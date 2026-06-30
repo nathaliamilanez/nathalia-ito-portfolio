@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snap Kitchen — Nathalia Ito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── BACK HEADER ── */
+    .cs-back-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 56px; display: flex; align-items: center; padding: 0 40px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+      transition: background 300ms ease, backdrop-filter 300ms ease,
+        -webkit-backdrop-filter 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+    }
+    .cs-back-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.3px; color: #111; text-decoration: none; transition: color 0.2s ease;
+    }
+    .cs-back-btn:hover { color: #555; }
+    .cs-back-btn svg { transition: transform 0.2s ease; }
+    .cs-back-btn:hover svg { transform: translateX(-3px); }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── HERO IMAGE ── */
+    .cs-hero-img { width: 100%; height: 400px; overflow: hidden; position: relative; background: #F59C80; display: flex; align-items: center; justify-content: center; }
+    .cs-hero-img-inner {
+      display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+    }
+    .cs-hero-img-inner img {
+      max-height: 272px; width: auto; max-width: 90%; object-fit: contain; display: block; margin-top: 24px;
+    }
+
+    /* ── HERO ── */
+    .cs-hero { padding: 0 0 80px; margin-top: 100px; }
+    .cs-tag {
+      font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 18px;
+    }
+    .cs-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px; color: #111; line-height: 1.05; margin-bottom: 20px;
+    }
+    .cs-subtitle {
+      font-family: 'Inter', sans-serif; font-size: 17px; color: #666;
+      line-height: 1.65;
+    }
+
+    /* ── META ROW ── */
+    .cs-meta-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8;
+    }
+    .cs-meta-item { padding: 44px 32px 44px 0; }
+    .cs-meta-item + .cs-meta-item { padding: 44px 32px; }
+    .cs-meta-label {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase; color: rgba(17,17,17,0.40); margin-bottom: 8px;
+    }
+    .cs-meta-value {
+      font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 500;
+      color: #111; letter-spacing: -0.2px;
+    }
+
+    /* ── SECTION BASE ── */
+    .cs-section { padding: 64px 0; }
+    .cs-section + .cs-section { border-top: 1px solid #F0F0F0; }
+    .cs-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase; color: #FF0090; margin-bottom: 16px;
+    }
+    .cs-section-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; letter-spacing: -1px; color: #111; line-height: 1.15; margin-bottom: 24px;
+    }
+    .cs-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555;
+      line-height: 1.75; max-width: 680px;
+    }
+    .cs-body p + p { margin-top: 14px; }
+
+    /* ── SECTION IMAGE ── */
+    .cs-section-img { width: 100%; border-radius: 20px; display: block; margin-top: 40px; margin-bottom: 48px; }
+
+    /* ── QUOTE BLOCK — dark full-bleed ── */
+    .cs-quote-block {
+      background: #111;
+      padding: 160px 40px;
+      text-align: center;
+      width: 100%;
+    }
+    .cs-quote-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .cs-quote-eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 32px;
+    }
+    .cs-quote-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+    }
+
+    /* ── KEY CHALLENGES — dark full-bleed ── */
+    .cs-challenges-section {
+      background: #1a1a1a;
+      padding: 100px 40px;
+      width: 100%;
+    }
+    .cs-challenges-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .cs-challenges-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 48px;
+    }
+    .challenges-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .challenge-card {
+      background: #2a2a2a;
+      border-radius: 24px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 4px;
+      background: #FF0090;
+      border-radius: 0 4px 4px 0;
+    }
+    .challenge-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #FF0090;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+      line-height: 1;
+      min-width: 52px;
+    }
+    .challenge-content { display: flex; flex-direction: column; gap: 12px; }
+    .challenge-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .challenge-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+    }
+
+    /* ── PROCESS SECTION ── */
+    .section-process { background: #F2F2F2; padding: 80px 40px; }
+    .section-process-inner { max-width: 860px; margin: 0 auto; }
+    .section-process-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -1px; color: #111; margin-bottom: 24px;
+      text-align: center;
+    }
+    .section-process-cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    .section-process-left {}
+    .section-process-right { display: flex; align-items: flex-start; justify-content: center; }
+    .section-process-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555; line-height: 1.75;
+      max-width: 640px; margin: 0 auto 40px; text-align: center;
+    }
+    .section-process-img { width: 100%; border-radius: 20px; display: block; }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps {
+      list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0;
+    }
+    .process-step {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555;
+      line-height: 1.65; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .process-step::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── INSIGHTS LIST (simple arrow style) ── */
+    .insights-list-simple {
+      list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 32px;
+    }
+    .insight-item-simple {
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #555;
+      line-height: 1.65; display: flex; align-items: flex-start; gap: 12px;
+      padding: 18px 20px; background: #F5F5F7; border-radius: 12px;
+    }
+    .insight-item-simple::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── GUIDING QUESTIONS BLOCK ── */
+    .guiding-questions {
+      background: #111; border-radius: 20px; padding: 36px 40px; margin-top: 36px;
+    }
+    .guiding-questions-label {
+      font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.8px; text-transform: uppercase; color: #FF0090; margin-bottom: 24px;
+    }
+    .guiding-questions-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .guiding-questions-list li {
+      font-family: 'Manrope', sans-serif; font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 700; color: #fff; line-height: 1.2; display: flex; align-items: center; gap: 12px;
+    }
+    .guiding-questions-list li::before {
+      content: '→'; color: #FF0090; font-size: 18px; flex-shrink: 0;
+    }
+
+    /* ── PERSONAS SECTION ── */
+    .section-personas { background: #F2F2F2; padding: 80px 40px 100px; }
+    .section-personas-inner { max-width: 1200px; margin: 0 auto; }
+    .section-personas-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -1px; color: #111; text-align: center; margin-bottom: 48px;
+    }
+    .section-personas-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555; line-height: 1.75;
+      max-width: 640px; margin: 0 auto 48px; text-align: center;
+    }
+    .personas-img { width: 100%; border-radius: 20px; display: block; }
+
+    /* ── SNAP KITCHEN: persona cards grid ── */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+    .persona-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px;
+    }
+    .persona-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .persona-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: rgba(17,17,17,0.35);
+      overflow: hidden;
+    }
+    .persona-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .persona-name {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #111;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .persona-badge {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #FF0090;
+    }
+    .persona-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .persona-subtitle {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 14px;
+    }
+    .persona-challenges {
+      list-style: disc;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .persona-challenges li {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.55;
+    }
+
+    /* ── FEATURE ROWS (DESIGN & SOLUTION) ── */
+    .cs-uxui-section { padding: 40px 0 0; }
+    .cs-feature-row {
+      display: flex; flex-direction: column; gap: 32px; padding: 32px 0;
+    }
+    .cs-feature-row + .cs-feature-row { border-top: 1px solid #E8E8E8; }
+    .cs-feature-full-image { width: 100%; margin-bottom: 32px; }
+    .cs-feature-full-image img { width: 100%; display: block; border-radius: 20px; }
+    .cs-feature-full-image + .cs-feature-row { border-top: 1px solid #E8E8E8; }
+    .cs-feature-visual {
+      background: #F5F5F7; border-radius: 20px; width: 100%; overflow: hidden;
+    }
+    .cs-feature-visual img {
+      width: 100%; display: block; border-radius: 20px;
+    }
+    .cs-feature-number {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 16px;
+    }
+    .cs-feature-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; letter-spacing: -0.8px; color: #111; line-height: 1.15; margin-bottom: 20px;
+    }
+    .cs-feature-title span { color: #FF0090; }
+    .cs-feature-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #666;
+      line-height: 1.75; margin-bottom: 32px;
+    }
+    .cs-feature-goals-label {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: rgba(17,17,17,0.38);
+      margin-bottom: 14px;
+    }
+    .cs-feature-goals { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cs-feature-goals li {
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #444;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .cs-feature-goals li::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── CONTRIBUTION LIST ── */
+    .contribution-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .contribution-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.55;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .contribution-list li::before {
+      content: '→';
+      color: #333;
+      font-weight: 400;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── SUCCESS METRICS ── */
+    .success-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .success-card {
+      background: #2a2a2a;
+      border-radius: 24px;
+      padding: 32px 28px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .success-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .success-card-icon { color: #FF0090; flex-shrink: 0; }
+    .success-card-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.08);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+    .success-card-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .success-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .success-card-divider {
+      width: 100%;
+      height: 2px;
+      background: #FF0090;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .success-card-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .success-metric-row { display: flex; flex-direction: column; gap: 4px; }
+    .success-metric-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+    .success-metric-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.55;
+    }
+
+    /* ── DISCOVERY TABLE ── */
+    .discovery-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+    }
+    .discovery-table thead tr { border-bottom: 2px solid #111; }
+    .discovery-table thead th {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      text-align: left;
+      padding: 12px 0;
+    }
+    .discovery-table tbody tr { border-bottom: 1px solid #F0F0F0; }
+    .discovery-table tbody tr:last-child { border-bottom: none; }
+    .discovery-table tbody td {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #444;
+      padding: 18px 0;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .discovery-table tbody td:first-child {
+      font-weight: 600;
+      color: #111;
+      padding-right: 24px;
+      white-space: nowrap;
+    }
+    .discovery-table tbody td:nth-child(2) { padding-right: 24px; }
+
+    .discovery-img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      margin-top: 40px;
+    }
+
+    /* ── INSIGHTS (alternating grid) ── */
+    .insights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      margin-top: 40px;
+    }
+    .insight-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .insight-item.reverse { direction: rtl; }
+    .insight-item.reverse > * { direction: ltr; }
+    .insight-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 12px;
+    }
+    .insight-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #111;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .insight-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+    }
+    .insight-opportunity {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: #888;
+      line-height: 1.6;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #F0F0F0;
+    }
+    .insight-opportunity strong { font-weight: 600; color: #555; }
+    .insight-visual {
+      background: #1a1a2e;
+      border-radius: 14px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .insight-visual.has-image { background: #F5F5F5; }
+    .insight-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+    .insight-screen-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 80%;
+    }
+    .insight-screen {
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+    }
+    .insight-screen.accent-bar {
+      background: rgba(255,0,144,0.2);
+      height: 4px;
+      border-radius: 2px;
+    }
+    .iscr-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); flex-shrink: 0; }
+    .iscr-dot.pink { background: #FF0090; }
+    .iscr-line { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.12); flex: 1; }
+
+    /* ── PRODUCT STRATEGY TABLE ── */
+    .strategy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+    }
+    .strategy-table thead tr { border-bottom: 2px solid #111; }
+    .strategy-table thead th {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      text-align: left;
+      padding: 12px 0;
+    }
+    .strategy-table thead th:last-child { text-align: right; }
+    .strategy-table tbody tr { border-bottom: 1px solid #F0F0F0; }
+    .strategy-table tbody td {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #444;
+      padding: 18px 0;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .strategy-table tbody td:first-child {
+      font-weight: 600;
+      color: #111;
+      padding-right: 24px;
+      white-space: nowrap;
+    }
+    .strategy-table tbody td:nth-child(2) { padding-right: 24px; }
+    .stage-badge {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      float: right;
+      background: #111;
+      color: #fff;
+    }
+
+    /* ── KEY LEARNINGS ── */
+    .learnings-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .learning-card {
+      background: #F5F5F7;
+      border-radius: 20px;
+      padding: 36px 40px;
+    }
+    .learning-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 12px;
+    }
+    .learning-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.3px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .learning-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.75;
+    }
+
+    /* ── IMPACT SECTION ── */
+    .cs-impact-section {
+      background: #1e1e1e; padding: 100px 40px; width: 100%; text-align: center;
+    }
+    .cs-impact-inner { max-width: 960px; margin: 0 auto; }
+    .cs-impact-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 8px;
+    }
+    .cs-impact-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1; margin-top: 0; margin-bottom: 32px;
+    }
+    .cs-impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .cs-impact-card {
+      background: #2a2a2a; border-radius: 24px; padding: 48px 36px;
+      text-align: center; display: flex; flex-direction: column; align-items: center;
+    }
+    .cs-impact-card-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .cs-impact-card-desc {
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: rgba(255,255,255,0.4); line-height: 1.7;
+    }
+
+    /* ── NEXT PROJECT ── */
+    .cs-next-section { padding: 100px 40px; text-align: center; background: #F5F5F7; }
+    .cs-next-card {
+      display: inline-flex; flex-direction: column; align-items: center;
+      cursor: pointer; text-decoration: none;
+    }
+    .cs-next-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 20px;
+    }
+    .cs-next-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(32px, 5vw, 72px);
+      font-weight: 700; color: #111; letter-spacing: -2px; line-height: 1.05;
+      margin-bottom: 32px; transition: color 0.25s ease;
+    }
+    .cs-next-card:hover .cs-next-title { color: #FF0090; }
+    .cs-next-btn {
+      font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.5px; color: #111; background: transparent;
+      padding: 14px 32px; border-radius: 999px; border: 2px solid #111;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.25s ease, color 0.25s ease, gap 0.2s ease;
+    }
+    .cs-next-card:hover .cs-next-btn { background: #111; color: #fff; gap: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .footer-logo { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 6px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 14px; color: #F5F5F5; }
+
+    /* ── HAMBURGER MENU ── */
+    .cs-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 22px; height: 16px; background: none; border: none; cursor: pointer;
+      padding: 0; margin-left: auto; flex-shrink: 0;
+    }
+    .cs-hamburger span {
+      display: block; width: 100%; height: 2px; background: #111;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    .cs-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .cs-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .cs-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .cs-nav-menu {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1001;
+      height: 100vh; height: 100dvh;
+      background-color: #fff; display: flex; flex-direction: column; justify-content: flex-start;
+      padding: 72px 32px 40px;
+      transform: translateY(-12px); opacity: 0; pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.25s ease;
+    }
+    .cs-nav-menu.is-open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .cs-nav-close {
+      position: absolute; top: 16px; right: 20px;
+      width: 34px; height: 34px;
+      background: #e8e8ed; border: none; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #1d1d1f; line-height: 1; flex-shrink: 0;
+    }
+    .cs-nav-links { width: 100%; }
+    .cs-nav-link {
+      display: block; font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 8vw, 48px); font-weight: 700;
+      color: #1d1d1f; text-decoration: none; letter-spacing: -0.5px; line-height: 1.15;
+      padding: 10px 0;
+      transition: color 0.15s ease;
+    }
+    .cs-nav-link:hover { color: #6e6e73; }
+
+    /* ── SECTION SPACING CLASSES ── */
+    .cs-section-overview  { padding: 100px 0; }
+    .cs-section-flush-top { padding-top: 80px; }
+    .cs-section-pad80     { padding-top: 80px; padding-bottom: 80px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .page { padding: 0 32px; }
+      .cs-back-header { padding: 0 32px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .cs-back-header { padding: 0 20px; }
+      .page { padding: 0 20px; }
+      .cs-hamburger { display: flex; }
+
+      /* Hero image */
+      .cs-hero-img { height: 280px; }
+      .cs-hero-img-inner img { max-height: 210px; }
+
+      /* Hero text */
+      .cs-hero { margin-top: 72px; padding: 0 0 56px; }
+      .cs-title { letter-spacing: -1px; }
+
+      /* Meta row */
+      .cs-meta-row { grid-template-columns: 1fr 1fr; }
+      .cs-meta-item { padding: 28px 12px 28px 0; }
+      .cs-meta-item + .cs-meta-item { padding: 28px 12px; }
+
+      /* Section base */
+      .cs-section { padding: 48px 0; }
+      .cs-section-overview  { padding: 60px 0; }
+      .cs-section-flush-top { padding-top: 48px; }
+      .cs-section-pad80     { padding-top: 48px; padding-bottom: 48px; }
+
+      /* Quote block */
+      .cs-quote-block { padding: 72px 20px; }
+
+      /* Key challenges */
+      .cs-challenges-section { padding: 64px 20px; }
+      .challenge-card { padding: 24px 20px 24px 24px; gap: 20px; }
+      .challenge-num { font-size: 26px; min-width: 36px; }
+      .challenge-title { font-size: 18px; }
+
+      /* Process */
+      .section-process { padding: 56px 20px; }
+      .section-process-cols { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Personas */
+      .section-personas { padding: 56px 20px 72px; }
+      .personas-grid { grid-template-columns: 1fr; }
+
+      /* Feature rows */
+      .cs-feature-row { gap: 24px; }
+      .cs-uxui-section { padding: 48px 0; }
+
+      /* Success metrics */
+      .success-grid { grid-template-columns: 1fr; }
+
+      /* Insights */
+      .insight-item { grid-template-columns: 1fr; }
+      .insight-item.reverse { direction: ltr; }
+
+      /* Impact */
+      .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-impact-section { padding: 64px 20px; }
+      .cs-impact-card { padding: 32px 24px; }
+
+      /* Next project */
+      .cs-next-section { padding: 64px 20px; }
+      .cs-next-title { letter-spacing: -1px; }
+
+      /* Misc */
+      .guiding-questions { padding: 28px 24px; }
+      .learning-card { padding: 28px 24px; }
+      .learning-title { font-size: 19px; }
+      footer { padding: 40px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      /* Meta — single column */
+      .cs-meta-row { grid-template-columns: 1fr; }
+      .cs-meta-item { padding: 20px 0; }
+      .cs-meta-item + .cs-meta-item { padding: 20px 0; border-top: 1px solid #F0F0F0; }
+
+      /* Hero image */
+      .cs-hero-img { height: 220px; }
+      .cs-hero-img-inner img { max-height: 170px; }
+
+      /* Quote + challenges */
+      .cs-quote-block { padding: 56px 16px; }
+      .cs-challenges-section { padding: 48px 16px; }
+      .challenge-card { padding: 20px 14px 20px 18px; gap: 14px; }
+      .challenge-num { font-size: 22px; min-width: 28px; }
+
+      /* Impact + feature */
+      .cs-impact-card { padding: 28px 20px; }
+      .cs-feature-row { padding: 28px 0; }
+
+      /* Tables — scrollable */
+      .discovery-table, .strategy-table { display: block; overflow-x: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs-hero-img-inner { will-change: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACK HEADER -->
+  <header class="cs-back-header" id="backHeader">
+    <a href="index.html#work" class="cs-back-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Selected Work
+    </a>
+    <button class="cs-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="cs-nav-menu" id="navMenu" aria-hidden="true">
+    <button class="cs-nav-close" id="navClose" aria-label="Close menu">✕</button>
+    <div class="cs-nav-links">
+      <a href="index.html#about" class="cs-nav-link">About</a>
+      <a href="index.html#work" class="cs-nav-link">Work</a>
+      <a href="index.html#skills" class="cs-nav-link">Skills</a>
+      <a href="index.html#contact" class="cs-nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO IMAGE — full bleed -->
+  <div class="cs-hero-img" id="heroImg">
+    <div class="cs-hero-img-inner" id="heroImgInner">
+      <img src="Images/Home/Snapkitchen image card .png" alt="Snap Kitchen Case Study Hero" />
+    </div>
+  </div>
+
+  <!-- HERO + META -->
+  <div class="page">
+    <div class="cs-hero">
+      <p class="cs-tag">E-Commerce · Food Tech · Subscription</p>
+      <h1 class="cs-title">Designing for Efficiency,<br>Scale, and Impact</h1>
+      <p class="cs-subtitle">How do you turn a local and in-store meal service into a nationwide digital journey?</p>
+    </div>
+
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Role</p>
+        <p class="cs-meta-value">Product Designer</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Year</p>
+        <p class="cs-meta-value">2022</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Duration</p>
+        <p class="cs-meta-value">6 months</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Sector</p>
+        <p class="cs-meta-value">Food Delivery</p>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="cs-section cs-section-overview">
+      <h2 class="cs-section-title">Project Overview</h2>
+      <div class="cs-body">
+        <p>Snap Kitchen is a U.S. meal delivery company specializing in healthy, ready-to-eat meals. Founded in 2010 in Austin, Texas, it originally operated through 33 retail stores across Texas and Philadelphia. As the pandemic accelerated the shift to online purchasing, the company pivoted to a nationwide direct-to-consumer model, expanding its e-commerce operations and home delivery service.</p>
+        <p>This rapid transition exposed significant limitations in its digital ecosystem. Built for a retail-first business, the platform relied on disconnected third-party tools, leading to duplicated data, fragmented workflows, and inconsistent user experiences. As operations scaled, support requests increased, highlighting the need for a more unified, scalable, and efficient digital platform.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TARGET AUDIENCE & PERSONAS — full bleed grey -->
+  <div class="section-personas">
+    <div class="section-personas-inner">
+      <h2 class="section-personas-title">Key User Personas</h2>
+      <div class="personas-grid">
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar"><img src="Images/SnapKitchen-Case-Study/The-Active-Fitness-Enthusiast.png" alt="The Active Fitness Enthusiast" /></div>
+            <div>
+              <div class="persona-name">The Active Fitness Enthusiast</div>
+              <div class="persona-badge">Fitness Customer</div>
+            </div>
+          </div>
+          <p class="persona-desc">A health-conscious customer who prioritizes performance, recovery, and nutrition. They look for meals with balanced macros, larger portions, and science-backed nutrition to support an active lifestyle.</p>
+          <p class="persona-subtitle">Pain Points</p>
+          <ul class="persona-challenges">
+            <li>Meal prep takes too much time</li>
+            <li>Difficult to consistently hit nutrition goals</li>
+            <li>Limited healthy ready-to-eat options</li>
+            <li>Wants meals with higher protein and balanced macros</li>
+          </ul>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar"><img src="Images/SnapKitchen-Case-Study/The-Busy-Health-Conscious-Professional.png" alt="The Busy Health-Conscious Professional" /></div>
+            <div>
+              <div class="persona-name">The Busy Health-Conscious Professional</div>
+              <div class="persona-badge">Lifestyle Customer</div>
+            </div>
+          </div>
+          <p class="persona-desc">A busy professional balancing work and personal life who values convenience without sacrificing nutrition. They want chef-prepared meals that fit their schedule and support long-term healthy habits.</p>
+          <p class="persona-subtitle">Pain Points</p>
+          <ul class="persona-challenges">
+            <li>Little time to cook during the week</li>
+            <li>Healthy options often lack variety</li>
+            <li>Wants meals that taste as good as they are healthy</li>
+            <li>Looking for a simple, reliable weekly routine</li>
+          </ul>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar"><img src="Images/SnapKitchen-Case-Study/The-Holistic-Wellness Seeker.png" alt="The Holistic Wellness Seeker" /></div>
+            <div>
+              <div class="persona-name">The Holistic Wellness Seeker</div>
+              <div class="persona-badge">Holistic Customer</div>
+            </div>
+          </div>
+          <p class="persona-desc">A customer who views food as part of overall well-being. They care about ingredient quality, nutrition, flavor, and how meals contribute to both physical and mental wellness.</p>
+          <p class="persona-subtitle">Pain Points</p>
+          <ul class="persona-challenges">
+            <li>Hard to find meals aligned with wellness values</li>
+            <li>Wants premium ingredients and global flavors</li>
+            <li>Looks for products that feel nourishing rather than purely functional</li>
+            <li>Expects food to support a healthy lifestyle beyond calorie counting</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM — dark full bleed -->
+  <div class="cs-quote-block">
+    <div class="cs-quote-inner">
+      <p class="cs-quote-eyebrow">The Problem</p>
+      <p class="cs-quote-text">How might we transform a fragmented local meal service into a scalable nationwide ecosystem connecting customers, operations, and logistics?</p>
+    </div>
+  </div>
+
+  <!-- KEY CHALLENGES — dark full bleed -->
+  <div class="cs-challenges-section">
+    <div class="cs-challenges-inner">
+      <h2 class="cs-challenges-title">Key Challenges</h2>
+      <div class="challenges-list">
+
+        <div class="challenge-card">
+          <div class="challenge-num">01</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Fragmented Digital Infrastructure</div>
+            <div class="challenge-desc">The platform relied on 30+ third-party vendors, many with overlapping services. This created disconnected data, duplicated manual work, and mounting operational complexity that the team couldn't sustain at scale.</div>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-num">02</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Usability &amp; Activation Gaps</div>
+            <div class="challenge-desc">Users faced separate login systems for web and mobile, a confusing subscription flow, and unclear value communication — driving up support volume to 120+ tickets per week and increasing early drop-off rates.</div>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-num">03</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Internal Process Inefficiencies</div>
+            <div class="challenge-desc">Admin tools required deep system knowledge to operate and lacked proper documentation. Promotions ran manually across disconnected platforms, concentrating knowledge in a few individuals and creating operational bottlenecks.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT SUCCESS LOOKED LIKE — full width centered -->
+  <section style="padding: 100px 40px 120px; text-align: center;">
+    <h2 class="cs-section-title" style="text-align:center;">What Success Looked Like</h2>
+    <div class="success-grid" style="text-align:left;">
+
+        <!-- Card 1: Simplified Experience -->
+        <div class="success-card">
+          <div class="success-card-top">
+            <div class="success-card-icon">
+              <!-- Lucide: users -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="success-card-badge">Retention</span>
+          </div>
+          <div class="success-card-title">Simplified<br>Experience</div>
+          <div class="success-card-desc">Reduce friction across the user journey — from login and onboarding to subscription management.</div>
+          <div class="success-card-divider"></div>
+          <div class="success-card-metrics">
+            <div class="success-metric-row">
+              <span class="success-metric-label">Customer Support Volume</span>
+              <span class="success-metric-value">Fewer tickets related to login, subscriptions, and navigation</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Subscription Activation Rate</span>
+              <span class="success-metric-value">More users successfully starting and managing a plan</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Onboarding Completion Rate</span>
+              <span class="success-metric-value">Higher rate of first-time users completing the full flow</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Operational Scale -->
+        <div class="success-card">
+          <div class="success-card-top">
+            <div class="success-card-icon">
+              <!-- Lucide: trending-up -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <span class="success-card-badge">Efficiency</span>
+          </div>
+          <div class="success-card-title">Operational<br>Scale</div>
+          <div class="success-card-desc">Reduce manual work and internal tool dependencies so teams can operate faster and with less overhead.</div>
+          <div class="success-card-divider"></div>
+          <div class="success-card-metrics">
+            <div class="success-metric-row">
+              <span class="success-metric-label">Manual Promotion Execution Time</span>
+              <span class="success-metric-value">Faster promotions with fewer manual steps across platforms</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Admin Onboarding Time</span>
+              <span class="success-metric-value">Reduced time for staff to learn and operate admin tools</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Cross-Platform Data Sync Errors</span>
+              <span class="success-metric-value">Fewer discrepancies between web and mobile data</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Business Scalability -->
+        <div class="success-card">
+          <div class="success-card-top">
+            <div class="success-card-icon">
+              <!-- Lucide: dollar-sign -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <span class="success-card-badge">Growth</span>
+          </div>
+          <div class="success-card-title">Business<br>Scalability</div>
+          <div class="success-card-desc">Support nationwide expansion, loyalty program adoption, and a personalized meal experience at scale.</div>
+          <div class="success-card-divider"></div>
+          <div class="success-card-metrics">
+            <div class="success-metric-row">
+              <span class="success-metric-label">New User Activation Rate</span>
+              <span class="success-metric-value">More first-time users completing their first order</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Snap Pass Enrollment</span>
+              <span class="success-metric-value">Higher adoption of the loyalty subscription program</span>
+            </div>
+            <div class="success-metric-row">
+              <span class="success-metric-label">Menu Personalization Engagement</span>
+              <span class="success-metric-value">Increased interaction with location-based meal recommendations</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- THE PROCESS — full bleed grey -->
+  <div class="section-process">
+    <div class="section-process-inner">
+      <h2 class="section-process-title">The Process</h2>
+      <p class="section-process-body">The process applied to this project followed a holistic approach, rooted in the principles of the Double Diamond and Lean Design. We incorporated the core phases of Discovery, Definition, Ideation, and Implementation — adapting them based on feasibility and timelines. Flexibility was essential to optimize time, prioritize tasks, and focus efforts on the most impactful stages.</p>
+      <img class="section-process-img" src="Images/SnapKitchen-Case-Study/The-process-image.avif" alt="The Design Process" />
+    </div>
+  </div>
+
+  <!-- GOALS, DISCOVERY, INSIGHTS, STRATEGY -->
+  <div class="page">
+
+    <!-- DISCOVERY & RESEARCH -->
+    <section class="cs-section">
+      <h2 class="cs-section-title">Discovery &amp; Research</h2>
+      <div class="cs-body">
+        <p>To align solutions with both business goals and operational realities, I conducted in-depth interviews and discovery sessions with a wide range of stakeholders — from the CEO and directors to developers, dieticians, customer support agents, and marketing staff. Gathering diverse perspectives helped keep the project user-centric while ensuring feasibility within the organization's operational context.</p>
+        <p>Following the interviews and contextual inquiries, I analyzed the data to identify recurring patterns. Using affinity mapping, findings were synthesized into three key insight categories: Customer Care, Web Admin Tool, and Third-Party Vendors.</p>
+      </div>
+      <table class="discovery-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Activities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stakeholder Interviews</td>
+            <td>Discovery sessions with the CEO, directors, designers, developers, tech leads, dieticians, customer support, and marketing staff.</td>
+          </tr>
+          <tr>
+            <td>Heuristic Evaluation</td>
+            <td>10 Nielsen Norman Group usability heuristics applied across web and mobile; analysis of support tickets and navigation friction points.</td>
+          </tr>
+          <tr>
+            <td>User Behavior Analysis</td>
+            <td>Customer Care support patterns, subscription and login issues, and behavioral data from analytics review.</td>
+          </tr>
+          <tr>
+            <td>Competitive Analysis</td>
+            <td>Market positioning, onboarding patterns, personalization models, and loyalty programs in the healthy meal delivery space.</td>
+          </tr>
+        </tbody>
+      </table>
+      <img class="discovery-img" src="Images/SnapKitchen-Case-Study/Affinity-Diagram-Image.avif" alt="Affinity Diagram from Discovery Research" />
+    </section>
+
+    <!-- INSIGHTS & OPPORTUNITIES -->
+    <section class="cs-section" style="border-top: none;">
+      <h2 class="cs-section-title">Insights &amp; Opportunities</h2>
+      <div class="cs-body">
+        <p>Through discovery, we uncovered recurring pain points across customer care, platform usability, and internal operations — revealing both the surface-level symptoms and the deeper systemic challenges behind them.</p>
+      </div>
+
+      <ul class="learnings-list">
+
+        <li class="learning-card">
+          <h3 class="learning-title">Support teams were overloaded by fragmented tools</h3>
+          <p class="learning-desc">Customer care agents averaged 120 tickets per week, spending considerable time retrieving internal information from disconnected platforms with no unified knowledge base. A small team managed all support channels simultaneously, leading to operational overload. <strong>Opportunity:</strong> Unify internal documentation and reduce the manual effort required to answer common customer questions.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">Separate login systems created confusion and friction</h3>
+          <p class="learning-desc">Users were required to create and manage different accounts for the website and the mobile app, causing confusion, access issues, and an inconsistent cross-platform experience. Many users asked why separate accounts were even necessary. <strong>Opportunity:</strong> Unify login across web and mobile to eliminate friction and simplify account management.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">The subscription flow lacked clarity and visual guidance</h3>
+          <p class="learning-desc">The subscription process lacked clear information architecture and visual guidance. Users frequently reached out just to understand how subscriptions worked, and support requests related to subscription management were among the highest in volume. <strong>Opportunity:</strong> Redesign the subscription flow with clear visual cues and structured guidance to reduce confusion and support dependency.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">The platform failed to communicate its value proposition</h3>
+          <p class="learning-desc">The platform lacked a built-in loyalty system and failed to clearly communicate its unique benefits. Combined with a lengthy and confusing onboarding process, this led to user hesitation, lower engagement, and early drop-off before users experienced the core value. <strong>Opportunity:</strong> Introduce a loyalty program and redesign onboarding to surface value early and guide users to their first meaningful moment.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">Internal admin tools blocked operational agility</h3>
+          <p class="learning-desc">The admin panel required deep system knowledge and lacked documentation, concentrating operational know-how in a few individuals. Promotions required manual execution across disconnected platforms, increasing the risk of errors and slowing down delivery timelines. <strong>Opportunity:</strong> Improve admin usability, document workflows, and reduce the manual effort required to run day-to-day operations.</p>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- PRODUCT STRATEGY -->
+    <section class="cs-section">
+      <h2 class="cs-section-title">Product Strategy</h2>
+      <div class="cs-body">
+        <p>Discovery revealed interconnected problems spanning user experience, operational workflows, and platform infrastructure. By aligning insights with business priorities, we defined five strategic initiatives to improve usability, activation, and long-term scalability.</p>
+      </div>
+      <table class="strategy-table">
+        <thead>
+          <tr>
+            <th>Solution</th>
+            <th>Strategic Opportunity</th>
+            <th style="text-align:right;">Stage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unified Login</td>
+            <td>Eliminate separate web and mobile accounts to reduce friction and simplify cross-platform access.</td>
+            <td><span class="stage-badge">Acquisition</span></td>
+          </tr>
+          <tr>
+            <td>Onboarding Redesign</td>
+            <td>Introduce the Snap Pass loyalty program and guide first-time users through a clearer, more engaging setup flow.</td>
+            <td><span class="stage-badge">Onboarding</span></td>
+          </tr>
+          <tr>
+            <td>Menu Personalization</td>
+            <td>Surface location-based, dietary-matched meals to increase relevance and drive higher meal selection engagement.</td>
+            <td><span class="stage-badge">Activation</span></td>
+          </tr>
+          <tr>
+            <td>Subscription Flow Clarity</td>
+            <td>Redesign plan selection with visual guidance and a clear information architecture to reduce support volume.</td>
+            <td><span class="stage-badge">Adoption</span></td>
+          </tr>
+          <tr>
+            <td>Admin Tool Improvements</td>
+            <td>Improve usability, document workflows, and reduce the manual overhead required for day-to-day operations.</td>
+            <td><span class="stage-badge">Efficiency</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- UX/UI DESIGN — Feature Rows -->
+  <div class="page" style="padding-top: 40px;">
+    <section class="cs-uxui-section">
+      <h2 class="cs-section-title">Designing the Experience</h2>
+
+      <!-- Feature 01: Home & Onboarding -->
+      <div class="cs-feature-row">
+        <div class="cs-feature-text">
+          <h3 class="cs-feature-title">Home &amp; Onboarding</h3>
+          <p class="cs-feature-body">New onboarding flows were designed to support first-time users entering the platform, introducing the Snap Pass loyalty program and offering 5% off on every subscription. Visual guidance was introduced to clearly explain how subscriptions work and what users can expect — reducing early drop-off and building confidence from the first interaction.</p>
+          <p class="cs-feature-goals-label">Goals</p>
+          <ul class="cs-feature-goals">
+            <li>Introduce the Snap Pass loyalty program to first-time users</li>
+            <li>Reduce early drop-off through clearer onboarding guidance</li>
+            <li>Increase subscription activation among new sign-ups</li>
+            <li>Communicate platform value before the first purchase</li>
+          </ul>
+        </div>
+        <div class="cs-feature-visual">
+          <img src="Images/SnapKitchen-Case-Study/Home-Onboarding-image.avif" alt="Home and Onboarding Screens" />
+        </div>
+      </div>
+      <div class="cs-feature-full-image">
+        <img src="Images/SnapKitchen-Case-Study/Mobile-Onboarding-Snap-Image.avif" alt="Mobile Onboarding Snap" />
+      </div>
+
+      <!-- Feature 02: Personalized Menu -->
+      <div class="cs-feature-row">
+        <div class="cs-feature-text">
+          <h3 class="cs-feature-title">Personalized Menu</h3>
+          <p class="cs-feature-body">Based on the user's address, a personalized menu is shown featuring meals available in their area. The menu was thoughtfully designed and categorized to match the user's dietary needs and preferences — making meal discovery faster, more relevant, and more engaging for both new and returning customers.</p>
+          <p class="cs-feature-goals-label">Goals</p>
+          <ul class="cs-feature-goals">
+            <li>Surface relevant meals based on the user's delivery location</li>
+            <li>Simplify dietary filtering to match preferences and restrictions</li>
+            <li>Increase meal selection engagement and time-to-add-to-cart</li>
+            <li>Reduce checkout abandonment caused by unavailable items</li>
+          </ul>
+        </div>
+        <div class="cs-feature-visual">
+          <img src="Images/SnapKitchen-Case-Study/Menu-updates-image.avif" alt="Personalized Menu Screens" />
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- HANDOFF AND DEVELOPMENT -->
+  <div class="page">
+    <section class="cs-section">
+      <h2 class="cs-section-title">Handoff and Development</h2>
+      <div class="cs-body">
+        <p>To keep design and development fully aligned, all UX deliverables, such as user flows, wireframes, UI screens, and interaction logic, were documented in Confluence. Design decisions were translated into clear user stories and acceptance criteria, serving as a single and up-to-date source of truth during implementation.</p>
+        <p>This clear and well-structured documentation helped streamline the handoff process and enabled the development team to work more efficiently. It gave the team full visibility into priorities, technical requirements, and expected outcomes.</p>
+        <p>Throughout the handoff phase, I remained actively involved to ensure alignment and execution by:</p>
+      </div>
+      <ul class="contribution-list" style="margin-top: 20px;">
+        <li>Creating interactive high-fidelity prototypes and detailed style guides in Figma</li>
+        <li>Hosting walkthroughs and alignment sessions with product managers, developers, QA testers, and tech leads to present design concepts, expected behaviors, and clarify implementation details</li>
+        <li>Documenting user stories and acceptance criteria directly in Confluence, including user flows, edge cases, error states, and interaction logic</li>
+        <li>Supporting QA and development teams during agile sprints</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- RESULTS — dark full bleed -->
+  <div class="cs-impact-section">
+    <div class="cs-impact-inner">
+      <h2 class="cs-impact-title">Impact</h2>
+      <div class="cs-impact-grid">
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">Improved<br>Operational Efficiency</h3>
+          <p class="cs-impact-card-desc">Reduced manual work in meal and receipt registration, streamlining internal workflows across teams.</p>
+        </div>
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">Loyalty<br>Program Launch</h3>
+          <p class="cs-impact-card-desc">Onboarding flows introduced Snap Pass to first-time users, creating a foundation for long-term customer retention.</p>
+        </div>
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">Unified Digital<br>Experience</h3>
+          <p class="cs-impact-card-desc">Single login across web and mobile, personalized menus, and a redesigned subscription flow simplified the end-to-end customer journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY LEARNINGS -->
+  <div class="page">
+    <section class="cs-section cs-section-pad80">
+      <h2 class="cs-section-title">Key Learnings</h2>
+      <ul class="learnings-list">
+        <li class="learning-card">
+          <h3 class="learning-title">Discovery drives alignment.</h3>
+          <p class="learning-desc">A solid discovery phase helped find the real problems behind user pain points and brought the team together around a shared direction. Collaborating early with customer care, marketing, developers, and other teams revealed that many UX issues were caused by internal processes — not just surface-level UI problems.</p>
+        </li>
+        <li class="learning-card">
+          <h3 class="learning-title">Systems thinking leads to better outcomes.</h3>
+          <p class="learning-desc">By thinking in systems and connecting people, processes, and technology, we were able to align both customer-facing and internal tools — improving usability and operational efficiency at the same time, rather than solving them in isolation.</p>
+        </li>
+        <li class="learning-card">
+          <h3 class="learning-title">Internal tools matter too.</h3>
+          <p class="learning-desc">Mapping and improving admin and operational tools were essential for boosting agility and informing how new flows were designed. A better internal experience directly enabled a better customer experience.</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <section class="cs-next-section">
+    <a href="o-boticario-case-study.html" class="cs-next-card">
+      <p class="cs-next-eyebrow">Up Next</p>
+      <h2 class="cs-next-title">O Boticário</h2>
+      <span class="cs-next-btn">View Case Study →</span>
+    </a>
+  </section>
+
+  <footer>
+    <p class="footer-logo">Nathalia Ito</p>
+    <p class="footer-copy">© 2026 Nathalia Ito. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const backHeader = document.getElementById('backHeader');
+    window.addEventListener('scroll', () => {
+      backHeader.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const navClose = document.getElementById('navClose');
+
+    function closeMenu() {
+      hamburger.classList.remove('is-open');
+      navMenu.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      navMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    navClose.addEventListener('click', closeMenu);
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('is-open');
+      navMenu.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      navMenu.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    navMenu.querySelectorAll('.cs-nav-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  </script>
+
+</body>
+</html>

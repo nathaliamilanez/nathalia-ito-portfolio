@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Boticário Case Study — Nathalia Ito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── BACK HEADER ── */
+    .cs-back-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 56px; display: flex; align-items: center; padding: 0 40px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+      transition: background 300ms ease, backdrop-filter 300ms ease,
+        -webkit-backdrop-filter 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+    }
+    .cs-back-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.3px; color: #111; text-decoration: none; transition: color 0.2s ease;
+    }
+    .cs-back-btn:hover { color: #555; }
+    .cs-back-btn svg { transition: transform 0.2s ease; }
+    .cs-back-btn:hover svg { transform: translateX(-3px); }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── HERO IMAGE ── */
+    .cs-hero-img { width: 100%; height: 400px; overflow: hidden; position: relative; background: #FDCCDE; }
+    .cs-hero-img-inner {
+      position: absolute; top: -15%; left: 0; width: 100%; height: 130%; will-change: transform;
+    }
+    .cs-hero-img-inner img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    }
+
+    /* ── HERO ── */
+    .cs-hero { padding: 0 0 80px; margin-top: 100px; }
+    .cs-tag {
+      font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 18px;
+    }
+    .cs-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px; color: #111; line-height: 1.05; margin-bottom: 20px;
+    }
+    .cs-subtitle {
+      font-family: 'Inter', sans-serif; font-size: 17px; color: #666;
+      line-height: 1.65;
+    }
+
+    /* ── META ROW ── */
+    .cs-meta-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8;
+    }
+    .cs-meta-item { padding: 44px 32px 44px 0; }
+    .cs-meta-item + .cs-meta-item { padding: 44px 32px; }
+    .cs-meta-label {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase; color: rgba(17,17,17,0.40); margin-bottom: 8px;
+    }
+    .cs-meta-value {
+      font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 500;
+      color: #111; letter-spacing: -0.2px;
+    }
+
+    /* ── SECTION BASE ── */
+    .cs-section { padding: 64px 0; }
+    .cs-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase; color: #FF0090; margin-bottom: 16px;
+    }
+    .cs-section-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; letter-spacing: -1px; color: #111; line-height: 1.15; margin-bottom: 24px;
+    }
+    .cs-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555;
+      line-height: 1.75; max-width: 680px;
+    }
+    .cs-body p + p { margin-top: 14px; }
+
+    /* ── SECTION IMAGE ── */
+    .cs-section-img { width: 100%; border-radius: 20px; display: block; margin-top: 40px; margin-bottom: 48px; }
+
+    /* ── QUOTE BLOCK — dark full-bleed ── */
+    .cs-quote-block {
+      background: #111;
+      padding: 160px 40px;
+      text-align: center;
+      width: 100%;
+    }
+    .cs-quote-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .cs-quote-eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 32px;
+    }
+    .cs-quote-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+    }
+
+    /* ── KEY CHALLENGES — dark full-bleed ── */
+    .cs-challenges-section {
+      background: #1a1a1a;
+      padding: 100px 40px;
+      width: 100%;
+    }
+    .cs-challenges-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .cs-challenges-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 48px;
+    }
+    .challenges-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .challenge-card {
+      background: #2a2a2a;
+      border-radius: 24px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 4px;
+      background: #FF0090;
+      border-radius: 0 4px 4px 0;
+    }
+    .challenge-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #FF0090;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+      line-height: 1;
+      min-width: 52px;
+    }
+    .challenge-content { display: flex; flex-direction: column; gap: 12px; }
+    .challenge-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .challenge-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+    }
+
+    /* ── PROCESS SECTION ── */
+    .section-process { background: #F2F2F2; padding: 80px 40px; }
+    .section-process-inner { max-width: 1040px; margin: 0 auto; }
+    .section-process-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -1px; color: #111; margin-bottom: 24px; text-align: left;
+    }
+    .section-process-cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    .section-process-left {}
+    .section-process-right { display: flex; align-items: flex-start; justify-content: center; }
+    .section-process-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555; line-height: 1.75;
+      margin: 0 0 32px; text-align: left;
+    }
+    .section-process-img { width: 100%; border-radius: 20px; display: block; }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps {
+      list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0;
+    }
+    .process-step {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555;
+      line-height: 1.65; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .process-step::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── INSIGHTS LIST ── */
+    .insights-list-simple {
+      list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 32px;
+    }
+    .insight-item-simple {
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #555;
+      line-height: 1.65; display: flex; align-items: flex-start; gap: 12px;
+      padding: 18px 20px; background: #F5F5F7; border-radius: 12px;
+    }
+    .insight-item-simple::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── GUIDING QUESTIONS BLOCK ── */
+    .guiding-questions {
+      background: #111; border-radius: 20px; padding: 36px 40px; margin-top: 36px;
+    }
+    .guiding-questions-label {
+      font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.8px; color: #fff; margin-bottom: 24px;
+    }
+    .guiding-questions-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .guiding-questions-list li {
+      font-family: 'Manrope', sans-serif; font-size: 22px;
+      font-weight: 700; color: #fff; letter-spacing: -0.3px; line-height: 1.25; display: flex; align-items: center; gap: 12px;
+    }
+    .guiding-questions-list li::before {
+      content: '→'; color: #FF0090; font-size: 18px; flex-shrink: 0;
+    }
+
+    /* ── PERSONAS SECTION ── */
+    .section-personas { background: #F2F2F2; padding: 80px 40px 100px; }
+    .section-personas-inner { max-width: 860px; margin: 0 auto; }
+    .section-personas-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -1px; color: #111; text-align: center; margin-bottom: 20px;
+    }
+    .section-personas-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #555; line-height: 1.75;
+      max-width: 640px; margin: 0 auto 48px; text-align: center;
+    }
+    .personas-img { width: 100%; border-radius: 20px; display: block; }
+
+    /* ── FEATURE ROWS (DESIGN & SOLUTION) ── */
+    .cs-uxui-section { padding: 40px 0 0; }
+    .cs-feature-row {
+      display: flex; flex-direction: column; gap: 32px; padding: 32px 0;
+    }
+    .cs-feature-visual {
+      background: #F5F5F7; border-radius: 20px; width: 100%; overflow: hidden;
+    }
+    .cs-feature-visual img {
+      width: 100%; display: block; border-radius: 20px;
+    }
+    .cs-feature-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; letter-spacing: -0.8px; color: #111; line-height: 1.15; margin-bottom: 20px;
+    }
+    .cs-feature-body {
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #666;
+      line-height: 1.75; margin-bottom: 32px;
+    }
+    .cs-feature-goals { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cs-feature-goals li {
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #444;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .cs-feature-goals li::before {
+      content: '→'; color: #333; font-weight: 400; font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── KEY LEARNINGS ── */
+    .learnings-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .learning-card {
+      background: #F5F5F7;
+      border-radius: 20px;
+      padding: 36px 40px;
+    }
+    .learning-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF0090;
+      margin-bottom: 12px;
+    }
+    .learning-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.3px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .learning-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.75;
+    }
+    @media (max-width: 768px) {
+      .learning-card { padding: 28px 24px; }
+      .learning-title { font-size: 19px; }
+    }
+
+    /* ── IMPACT SECTION ── */
+    .cs-impact-section {
+      background: #1e1e1e; padding: 100px 40px; width: 100%; text-align: center;
+    }
+    .cs-impact-inner { max-width: 960px; margin: 0 auto; }
+    .cs-impact-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 8px;
+    }
+    .cs-impact-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1; margin-top: 0; margin-bottom: 32px;
+    }
+    .cs-impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .cs-impact-card {
+      background: #2a2a2a; border-radius: 24px; padding: 48px 36px;
+      text-align: center; display: flex; flex-direction: column; align-items: center;
+    }
+    .cs-impact-card-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .cs-impact-card-desc {
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: rgba(255,255,255,0.4); line-height: 1.7;
+    }
+
+    /* ── NEXT PROJECT ── */
+    .cs-next-section { padding: 100px 40px; text-align: center; background: #F5F5F7; }
+    .cs-next-card {
+      display: inline-flex; flex-direction: column; align-items: center;
+      cursor: pointer; text-decoration: none;
+    }
+    .cs-next-eyebrow {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #FF0090; margin-bottom: 20px;
+    }
+    .cs-next-title {
+      font-family: 'Manrope', sans-serif; font-size: clamp(32px, 5vw, 72px);
+      font-weight: 700; color: #111; letter-spacing: -2px; line-height: 1.05;
+      margin-bottom: 32px; transition: color 0.25s ease;
+    }
+    .cs-next-card:hover .cs-next-title { color: #FF0090; }
+    .cs-next-btn {
+      font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.5px; color: #111; background: transparent;
+      padding: 14px 32px; border-radius: 999px; border: 2px solid #111;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.25s ease, color 0.25s ease, gap 0.2s ease;
+    }
+    .cs-next-card:hover .cs-next-btn { background: #111; color: #fff; gap: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .footer-logo { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 6px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 14px; color: #F5F5F5; }
+
+    /* ── HAMBURGER MENU ── */
+    .cs-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 22px; height: 16px; background: none; border: none; cursor: pointer;
+      padding: 0; margin-left: auto; flex-shrink: 0;
+    }
+    .cs-hamburger span {
+      display: block; width: 100%; height: 2px; background: #111;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    .cs-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .cs-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .cs-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .cs-nav-menu {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1001;
+      height: 100vh; height: 100dvh;
+      background-color: #fff; display: flex; flex-direction: column; justify-content: flex-start;
+      padding: 72px 32px 40px;
+      transform: translateY(-12px); opacity: 0; pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.25s ease;
+    }
+    .cs-nav-menu.is-open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .cs-nav-close {
+      position: absolute; top: 16px; right: 20px;
+      width: 34px; height: 34px;
+      background: #e8e8ed; border: none; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #1d1d1f; line-height: 1; flex-shrink: 0;
+    }
+    .cs-nav-links { width: 100%; }
+    .cs-nav-link {
+      display: block; font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 8vw, 48px); font-weight: 700;
+      color: #1d1d1f; text-decoration: none; letter-spacing: -0.5px; line-height: 1.15;
+      padding: 10px 0;
+      transition: color 0.15s ease;
+    }
+    .cs-nav-link:hover { color: #6e6e73; }
+
+    /* ── SECTION SPACING CLASSES (replaces inline styles) ── */
+    .cs-section-overview  { padding: 100px 0; }
+    .cs-section-flush-top { padding-top: 80px; }
+    .cs-section-pad80     { padding-top: 80px; padding-bottom: 80px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .page { padding: 0 32px; }
+      .cs-back-header { padding: 0 32px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .cs-back-header { padding: 0 20px; }
+      .page { padding: 0 20px; }
+      .cs-hamburger { display: flex; }
+
+      /* Hero image */
+      .cs-hero-img { height: 280px; }
+
+      /* Hero text */
+      .cs-hero { margin-top: 72px; padding: 0 0 56px; }
+      .cs-title { letter-spacing: -1px; }
+
+      /* Meta row */
+      .cs-meta-row { grid-template-columns: 1fr 1fr; }
+      .cs-meta-item { padding: 28px 12px 28px 0; }
+      .cs-meta-item + .cs-meta-item { padding: 28px 12px; }
+
+      /* Section base */
+      .cs-section { padding: 48px 0; }
+      .cs-section-overview  { padding: 60px 0; }
+      .cs-section-flush-top { padding-top: 48px; }
+      .cs-section-pad80     { padding-top: 48px; padding-bottom: 48px; }
+
+      /* Quote block */
+      .cs-quote-block { padding: 72px 20px; }
+
+      /* Key challenges */
+      .cs-challenges-section { padding: 64px 20px; }
+      .challenge-card { padding: 24px 20px 24px 24px; gap: 20px; }
+      .challenge-num { font-size: 26px; min-width: 36px; }
+      .challenge-title { font-size: 18px; }
+
+      /* Process */
+      .section-process { padding: 56px 20px; }
+      .section-process-cols { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Personas */
+      .section-personas { padding: 56px 20px 72px; }
+
+      /* Feature rows — flex, not grid */
+      .cs-feature-row { gap: 24px; }
+      .cs-uxui-section { padding: 48px 0; }
+
+      /* Impact */
+      .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-impact-section { padding: 64px 20px; }
+      .cs-impact-card { padding: 32px 24px; }
+
+      /* Next project */
+      .cs-next-section { padding: 64px 20px; }
+      .cs-next-title { letter-spacing: -1px; }
+
+      /* Misc */
+      .guiding-questions { padding: 28px 24px; }
+      .learning-card { padding: 28px 24px; }
+      .learning-title { font-size: 19px; }
+      footer { padding: 40px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      /* Meta — single column */
+      .cs-meta-row { grid-template-columns: 1fr; }
+      .cs-meta-item { padding: 20px 0; }
+      .cs-meta-item + .cs-meta-item { padding: 20px 0; border-top: 1px solid #F0F0F0; }
+
+      /* Hero image — smaller on very small phones */
+      .cs-hero-img { height: 220px; }
+
+      /* Quote + challenges */
+      .cs-quote-block { padding: 56px 16px; }
+      .cs-challenges-section { padding: 48px 16px; }
+      .challenge-card { padding: 20px 14px 20px 18px; gap: 14px; }
+      .challenge-num { font-size: 22px; min-width: 28px; }
+
+      /* Impact + feature */
+      .cs-impact-card { padding: 28px 20px; }
+      .cs-feature-row { padding: 28px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs-hero-img-inner { will-change: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACK HEADER -->
+  <header class="cs-back-header" id="backHeader">
+    <a href="index.html#work" class="cs-back-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Selected Work
+    </a>
+    <button class="cs-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="cs-nav-menu" id="navMenu" aria-hidden="true">
+    <button class="cs-nav-close" id="navClose" aria-label="Close menu">✕</button>
+    <div class="cs-nav-links">
+      <a href="index.html#about" class="cs-nav-link">About</a>
+      <a href="index.html#work" class="cs-nav-link">Work</a>
+      <a href="index.html#skills" class="cs-nav-link">Skills</a>
+      <a href="index.html#contact" class="cs-nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO IMAGE — full bleed -->
+  <div class="cs-hero-img" id="heroImg">
+    <div class="cs-hero-img-inner" id="heroImgInner">
+      <img src="Images/O-Boticario/Boti-Hero2.png" alt="O Boticário Mother's Day Experience" />
+    </div>
+  </div>
+
+  <!-- HERO + META -->
+  <div class="page">
+    <div class="cs-hero">
+      <p class="cs-tag">E-commerce · B2C · Beauty Tech</p>
+      <h1 class="cs-title">O Boticário's Mother's Day Experience: Designing a New Gifting Journey to Connect With Customers</h1>
+      <p class="cs-subtitle">Empowering customers to discover, compare, and choose the right Mother's Day gifts with confidence.</p>
+    </div>
+
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Role</p>
+        <p class="cs-meta-value">UX Researcher<br>UX Designer</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Year</p>
+        <p class="cs-meta-value">2016</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Duration</p>
+        <p class="cs-meta-value">2 weeks</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Sector</p>
+        <p class="cs-meta-value">Beauty Retail</p>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="cs-section cs-section-overview">
+      <h2 class="cs-section-title">Project Overview</h2>
+      <div class="cs-body">
+        <p>Boticário Group is one of Brazil's leading beauty companies, behind well-known brands like O Boticário, Quem Disse, Berenice?, Eudora, and Vult.</p>
+        <p>The aim of the project was to redesign the gift discovery journey of Mother's Day within a two-week sprint by strategically rethinking the user experience, identifying core usability issues, uncovering behavioral insights, and defining a more intuitive and resonant path to purchase to increase conversions.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- THE PROBLEM — dark full bleed -->
+  <div class="cs-quote-block">
+    <div class="cs-quote-inner">
+      <p class="cs-quote-eyebrow">The Problem</p>
+      <p class="cs-quote-text">How might we transform a generic product listing into a guided gifting experience that helps customers choose with confidence?</p>
+    </div>
+  </div>
+
+  <!-- KEY CHALLENGES — dark full bleed -->
+  <div class="cs-challenges-section">
+    <div class="cs-challenges-inner">
+      <h2 class="cs-challenges-title">Key Challenges</h2>
+      <div class="challenges-list">
+
+        <div class="challenge-card">
+          <div class="challenge-num">01</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Generic, product-first experience</div>
+            <div class="challenge-desc">The Mother's Day page displayed a generic product grid with little visual hierarchy, focusing on products instead of helping customers find the right gift.</div>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-num">02</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Limited gift discovery and filtering</div>
+            <div class="challenge-desc">Users had no dedicated gift search, meaningful filters, or guided recommendations to narrow down products based on recipient, preferences, or budget.</div>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-num">03</div>
+          <div class="challenge-content">
+            <div class="challenge-title">Missing emotional context</div>
+            <div class="challenge-desc">The experience lacked storytelling and emotional cues, failing to reflect the significance of Mother's Day and inspire confident gift decisions.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- THE PROCESS — full bleed grey -->
+  <div class="section-process">
+    <div class="section-process-inner">
+      <h2 class="section-process-title">The Process</h2>
+      <div class="section-process-cols">
+      <div class="section-process-left">
+        <p class="section-process-body">Working with the Lean UX Framework, I focused on delivering quick, validating iterations, balancing user needs, business goals, and technical constraints within a limited timeframe.</p>
+        <ol class="process-steps">
+          <li class="process-step">Research and data analysis – Analyzed user behavior using heatmaps (Crazy Egg) and Google Analytics to identify drop-offs and friction points across key journeys.</li>
+          <li class="process-step">Stakeholder alignments – Led collaborative sessions with cross-functional teams to clarify goals, technical limitations, and success metrics.</li>
+          <li class="process-step">User personas and empathy mapping – Quickly defined key user types and mapped their motivations, frustrations, and emotional triggers to inform the experience design.</li>
+          <li class="process-step">Information architecture and wireframing – Designed and tested medium-fidelity wireframes and flow prototypes to validate ideas early with internal stakeholders.</li>
+          <li class="process-step">Hand-off and delivery – Delivered a fully reimagined experience and high-impact wireframes within the two-week sprint, setting the foundation for UI design and development.</li>
+        </ol>
+      </div>
+      <div class="section-process-right">
+        <img class="section-process-img" src="Images/O-Boticario/O-Boticario-Process-Image.avif" alt="The Design Process" />
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH & DATA ANALYSIS -->
+  <div class="page">
+    <section class="cs-section cs-section-flush-top" style="padding-bottom: 0;">
+      <h2 class="cs-section-title">Research and Data Analysis</h2>
+      <div class="cs-body">
+        <p>To inform the redesign, quantitative and qualitative methods were combined to understand user behavior and business needs. This included analyzing heatmaps through Crazy Egg, reviewing Google Analytics to uncover user flows and drop-off points, and conducting stakeholder workshops to align strategic goals with customer expectations.</p>
+      </div>
+      <img class="cs-section-img" style="margin-bottom: 0;" src="Images/O-Boticario/O-Boticario-Heatmap-Image.avif" alt="Heatmap Analysis — Crazy Egg" />
+    </section>
+
+    <!-- INSIGHTS & OPPORTUNITIES -->
+    <section class="cs-section" style="padding-top: 100px;">
+      <h2 class="cs-section-title">Insights &amp; Opportunities</h2>
+      <div class="cs-body">
+        <p>Through heatmap analysis and Google Analytics data, recurring patterns emerged across user behavior — revealing both the surface-level symptoms and the deeper friction points behind low campaign performance.</p>
+      </div>
+
+      <ul class="learnings-list">
+
+        <li class="learning-card">
+          <h3 class="learning-title">Price is the primary decision driver</h3>
+          <p class="learning-desc">The heat concentration around the price range filter reinforces that price is a key decision factor for most users. It was their first move upon landing on the page. <strong>Opportunity:</strong> Prioritize price-range filtering by repositioning it as a primary, immediately visible interaction point on the page.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">Users filter, not browse</h3>
+          <p class="learning-desc">High interaction on the left sidebar filters combined with low engagement on the product grid suggests that users prefer filtering over browsing — indicating weak product presentation for a promotional campaign. <strong>Opportunity:</strong> Redesign the product layout and introduce guided filter flows that match users' mental model of narrowing down by preference rather than passive browsing.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">No guided path for gift discovery</h3>
+          <p class="learning-desc">Users lacked other ways to find a product beyond generic filters, revealing a need for a more personalized and intuitive discovery experience — similar to in-store guidance. <strong>Opportunity:</strong> Introduce a guided gift finder that mirrors the in-store experience by asking users about the recipient, budget, and preferences to surface relevant recommendations.</p>
+        </li>
+
+        <li class="learning-card">
+          <h3 class="learning-title">The layout failed to retain users</h3>
+          <p class="learning-desc">Many users left the page quickly, showing that the layout failed to engage or guide them effectively upon arrival. <strong>Opportunity:</strong> Redesign the page structure to immediately communicate relevance and guide users toward meaningful product discovery, reducing early exits.</p>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- STAKEHOLDER ALIGNMENTS -->
+    <section class="cs-section">
+      <h2 class="cs-section-title">Stakeholder Alignments</h2>
+      <div class="cs-body">
+        <p>I facilitated collaborative sessions with key stakeholders across marketing, product managers, and brand teams.</p>
+        <p>Through these sessions, I also gathered valuable insights from internal teams about customer behavior and pain points during previous Mother's Day campaigns. Together, we defined a UX strategy rooted in empathy and simplicity from these alignments.</p>
+      </div>
+      <div class="guiding-questions">
+        <h3 class="learning-title" style="color: #fff; margin-bottom: 32px;">Guiding Questions — In-Store Model</h3>
+        <ul class="guiding-questions-list">
+          <li>Who is this gift for?</li>
+          <li>What's your budget?</li>
+          <li>What does she enjoy?</li>
+        </ul>
+      </div>
+      <div class="cs-body" style="margin-top: 28px;">
+        <p>This approach became the foundation for a more intuitive, emotionally resonant gifting journey prioritizing relevance, ease, and connection.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- PERSONAS — full bleed grey -->
+  <div class="section-personas">
+    <div class="section-personas-inner">
+      <h2 class="section-personas-title">Key User Personas</h2>
+      <p class="section-personas-body">I defined the personas based on key audience insights for O Boticário's Mother's Day campaign to guide design decisions based on real behavior and business priorities. The profiles were built using a mix of analytics, stakeholder inputs, past campaign learnings, and observed shopping behaviors, offering a strategic lens to design a more intuitive, emotional, and conversion-driven journey.</p>
+      <img class="personas-img" src="Images/O-Boticario/O-Boticario-Key-Personas-Image.avif" alt="Key User Personas" />
+    </div>
+  </div>
+
+  <!-- INFORMATION ARCHITECTURE & WIREFRAME -->
+  <div class="page">
+    <section class="cs-section cs-section-flush-top" style="padding-bottom: 0;">
+      <h2 class="cs-section-title">Information Architecture and Wireframe</h2>
+      <div class="cs-body">
+        <p>To bring clarity and emotional resonance to O Boticário's Mother's Day page, I restructured the information architecture and designed the gift page to mimic the guidance of an in-store associate, helping users easily navigate by budget, recipient, or other preferences.</p>
+        <p>The final version of the wireframe was delivered after conducting rapid usability testing sessions with internal stakeholders. Based on their feedback gathered during these sessions, I refined the design to align better with user expectations and business objectives.</p>
+      </div>
+      <img class="cs-section-img" src="Images/O-Boticario/O-Boticario-Wireframe-Image.avif" alt="Wireframe — O Boticário Mother's Day redesign" />
+    </section>
+  </div>
+
+  <!-- UX/UI DESIGN — Feature Rows -->
+  <div class="page" style="padding-top: 40px;">
+    <section class="cs-uxui-section">
+      <h2 class="cs-section-title">Designing the Experience</h2>
+
+      <img class="cs-section-img" src="Images/O-Boticario/O-Boticario-DesignandSolution-Image.avif" alt="O Boticário redesigned experience — full page" />
+
+      <!-- Feature 01: Price Filtering -->
+      <div class="cs-feature-row">
+        <div class="cs-feature-text">
+          <h3 class="cs-feature-title">Price Filtering Optimization</h3>
+          <p class="cs-feature-body">I repositioned the previously overlooked price-filtering feature from the bottom to a prominent location at the top of the page, directly above a visually appealing image that captures the emotional essence of Mother's Day. This adjustment provided immediate visibility and easy access to the most frequently used filter, enhancing usability, reducing friction, and creating a more intuitive, budget-oriented shopping experience.</p>
+        </div>
+        <div class="cs-feature-visual">
+          <img src="Images/O-Boticario/O-Boticario-Price-Filtering-Optimization-Image.avif" alt="Price Filtering Optimization" />
+        </div>
+      </div>
+
+      <!-- Feature 02: Persona-Based Navigation -->
+      <div class="cs-feature-row">
+        <div class="cs-feature-text">
+          <h3 class="cs-feature-title">Persona-Based Navigation</h3>
+          <p class="cs-feature-body">Instead of guiding users through traditional product categories, the layout offers curated entry points based on meaningful relationships and recipient types — "Mãe também é" (Mother is also…).</p>
+          <p class="cs-feature-body">This solution responds to user behavior insights showing a preference for filtering by characteristics rather than browsing generic product lists, while reinforcing brand values of care, diversity, and emotional storytelling.</p>
+          <ul class="cs-feature-goals">
+            <li>Aunt – A maternal figure with a close emotional bond</li>
+            <li>Grandmother – A traditional and sentimental gift recipient</li>
+            <li>Godmother – Often youthful, stylish, and emotionally significant</li>
+            <li>Dad, who is also a mom – Inclusive representation of diverse families</li>
+            <li>Mother-in-law – Honored for her role in the extended family</li>
+            <li>Expecting mother – Celebrating new beginnings and motherhood in progress</li>
+          </ul>
+        </div>
+        <div class="cs-feature-visual">
+          <img src="Images/O-Boticario/O-Boticario-Persona-Based-Navigation-Image.avif" alt="Persona-Based Navigation — Mãe também é" />
+        </div>
+      </div>
+
+      <!-- Feature 03: Guided Discovery -->
+      <div class="cs-feature-row">
+        <div class="cs-feature-text">
+          <h3 class="cs-feature-title">Personalized Gift Discovery</h3>
+          <p class="cs-feature-body">To replicate more of the feeling of an in-store consultation, we designed a section that mimics how a salesperson might guide a shopper by asking, "What does she like?"</p>
+          <p class="cs-feature-body">This conversational flow replaces the generic product grid with a more personalized and guided experience, making it easier for users to find thoughtful and relevant gifts.</p>
+          <ul class="cs-feature-goals">
+            <li>The Fashionista – always staying on top of trends</li>
+            <li>The Home Decor Lover – finds joy in decorating with flowers</li>
+            <li>The Health-Conscious One – values self-care and takes time for herself</li>
+            <li>The Remarkable One – loves making a bold impression</li>
+            <li>The Explorer – enjoys traveling and relaxing</li>
+          </ul>
+        </div>
+        <div class="cs-feature-visual">
+          <img src="Images/O-Boticario/O-Boticario-Guided-Discovery-Framework-Image.avif" alt="Guided Discovery Framework" />
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- HANDOFF & DEVELOPMENT -->
+  <div class="page">
+    <section class="cs-section">
+      <h2 class="cs-section-title">Handoff and Development</h2>
+      <div class="cs-body">
+        <p>In 2016, handoff and collaboration between design and development relied on clear documentation, annotated wireframes, and close communication.</p>
+        <p>Once the redesigned wireframes were finalized and validated internally, I prepared detailed design specifications. Design files were shared with the development team via Dropbox, email, and intranet, supported by PDF documentation with usage notes and functional guidance.</p>
+        <p>To ensure alignment and consistency, I facilitated walkthrough sessions with front-end developers, addressing implementation questions and reviewing interactive behaviors.</p>
+        <p>Though modern tools like Figma or Zeplin were not yet standard, this process ensured a smooth and faithful transition from design to development within tight timelines. Close collaboration and weekly check-ins helped track progress and maintain design integrity throughout implementation.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- RESULTS — dark full bleed -->
+  <div class="cs-impact-section">
+    <div class="cs-impact-inner">
+      <h2 class="cs-impact-title">Impact</h2>
+      <div class="cs-impact-grid">
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">570,000<br>Visits</h3>
+          <p class="cs-impact-card-desc">Total visits during the campaign period, reflecting strong reach and audience engagement with the redesigned experience.</p>
+        </div>
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">21%<br>Conversion</h3>
+          <p class="cs-impact-card-desc">Higher conversion rate achieved through a more intuitive and emotionally resonant gifting journey.</p>
+        </div>
+        <div class="cs-impact-card">
+          <h3 class="cs-impact-card-title">34%<br>Bounce Rate</h3>
+          <p class="cs-impact-card-desc">Reduced bounce rate indicating stronger user engagement and a more effective page experience for gift discovery.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY LEARNINGS -->
+  <div class="page">
+    <section class="cs-section cs-section-pad80">
+      <h2 class="cs-section-title">Key Learnings</h2>
+      <ul class="learnings-list">
+        <li class="learning-card">
+          <h3 class="learning-title">Emotional design drives conversions.</h3>
+          <p class="learning-desc">Creating an experience that resonated with the emotional context of Mother's Day gift-giving directly impacted business results and how users interacted with the system.</p>
+        </li>
+        <li class="learning-card">
+          <h3 class="learning-title">Data-informed design decisions.</h3>
+          <p class="learning-desc">Using analytics and heatmaps to understand user behavior prevented assumptions and led to more effective and creative solutions.</p>
+        </li>
+        <li class="learning-card">
+          <h3 class="learning-title">Guided discovery over overwhelming choice.</h3>
+          <p class="learning-desc">Curating products into meaningful collections with clear navigation paths proved more effective than offering unlimited options at once.</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <section class="cs-next-section">
+    <a href="BJJLINK-case-study.html" class="cs-next-card">
+      <p class="cs-next-eyebrow">Up Next</p>
+      <h2 class="cs-next-title">BJJLINK</h2>
+      <span class="cs-next-btn">View Case Study →</span>
+    </a>
+  </section>
+
+  <footer>
+    <p class="footer-logo">Nathalia Ito</p>
+    <p class="footer-copy">© 2026 Nathalia Ito. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const backHeader = document.getElementById('backHeader');
+    window.addEventListener('scroll', () => {
+      backHeader.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const navClose = document.getElementById('navClose');
+
+    function closeMenu() {
+      hamburger.classList.remove('is-open');
+      navMenu.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      navMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    navClose.addEventListener('click', closeMenu);
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('is-open');
+      navMenu.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      navMenu.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    navMenu.querySelectorAll('.cs-nav-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+  </script>
+
+</body>
+</html>
