@@ -262,7 +262,7 @@
 
     /* ── PERSONAS SECTION ── */
     .section-personas { background: #F2F2F2; padding: 80px 40px 100px; }
-    .section-personas-inner { max-width: 1200px; margin: 0 auto; }
+    .section-personas-inner { max-width: 860px; margin: 0 auto; }
     .section-personas-title {
       font-family: 'Manrope', sans-serif; font-size: clamp(28px, 4vw, 44px);
       font-weight: 800; letter-spacing: -1px; color: #111; text-align: center; margin-bottom: 48px;
@@ -908,6 +908,9 @@
       .learning-card { padding: 28px 24px; }
       .learning-title { font-size: 19px; }
       footer { padding: 40px 20px; }
+
+      /* Tables — scrollable */
+      .discovery-table, .strategy-table { display: block; overflow-x: auto; }
     }
 
     @media (max-width: 480px) {
@@ -929,9 +932,6 @@
       /* Impact + feature */
       .cs-impact-card { padding: 28px 20px; }
       .cs-feature-row { padding: 28px 0; }
-
-      /* Tables — scrollable */
-      .discovery-table, .strategy-table { display: block; overflow-x: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
