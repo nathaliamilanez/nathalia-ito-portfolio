@@ -1,0 +1,646 @@
+/* ==========================================================================
+   Case study template — extends css/style.css tokens (--bg, --rail, --ease…)
+   ========================================================================== */
+
+/* ---------- Page intro overlay ---------- */
+
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s var(--ease);
+}
+
+.page-overlay-brand {
+  display: flex;
+  align-items: center;
+}
+
+.page-overlay-brand .logo-mark {
+  height: 44px;
+  width: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+.page-overlay-name {
+  display: inline-block;
+  font-size: 24px;
+  color: var(--white);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  margin-left: 18px;
+}
+
+.page-overlay.is-hidden {
+  transform: translate3d(0, -100%, 0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-overlay {
+    transition: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.cs-hero {
+  padding: 56px var(--gutter) 0;
+}
+
+.cs-hero-copy h1 {
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  max-width: 60%;
+}
+
+.cs-hero-sub {
+  font-size: clamp(16px, 1.4vw, 19px);
+  color: var(--gray-1);
+  max-width: 60%;
+  line-height: 1.5;
+}
+
+/* ---------- Overview (full-width photo + summary text) ---------- */
+
+.cs-overview-photo {
+  padding: 48px var(--gutter) 0;
+}
+
+.cs-overview-text {
+  min-width: 0;
+  max-width: 620px;
+}
+
+.cs-overview-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray-1);
+  margin-bottom: 20px;
+}
+
+.cs-overview-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+.cs-overview-thumb {
+  width: 100%;
+}
+
+.cs-overview-thumb:hover .project-thumb-img,
+.cs-overview-thumb:hover .project-thumb::before {
+  transform: none;
+}
+
+.cs-thumb-contain {
+  aspect-ratio: 2800 / 2000;
+  background: var(--bg);
+}
+
+.split-section.cs-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.cs-section-photo-full {
+  flex: 1 1 100%;
+  margin-top: 48px;
+}
+
+.photo-figure {
+  margin: 48px 0 0;
+}
+
+.photo-figure.cs-section-photo-full {
+  margin-top: 48px;
+}
+
+.photo-caption {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray-1);
+  max-width: none;
+}
+
+.cs-thumb-contain .project-thumb-img {
+  object-fit: contain;
+}
+
+.cs-meta-table {
+  margin-top: 32px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.cs-meta-row {
+  display: flex;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.cs-meta-row-label {
+  flex: 0 0 90px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--gray-1);
+}
+
+.cs-meta-row-value {
+  flex: 1 1 auto;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+/* ---------- Wide content variant (no max-width cap) ---------- */
+
+.split-content.cs-wide {
+  max-width: none;
+  min-width: 0;
+}
+
+.cs-lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--gray-1);
+  max-width: 620px;
+  margin-bottom: 8px;
+}
+
+/* ---------- Card surface (shared) ---------- */
+
+.card-surface {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+}
+
+/* ---------- Quote ---------- */
+
+.cs-quote-text {
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.28;
+  color: var(--white);
+  max-width: 780px;
+}
+
+/* ---------- Personas ---------- */
+
+.personas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.persona-card {
+  padding: 32px;
+}
+
+.persona-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.persona-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-1);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.persona-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.persona-name {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.persona-badge {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-1);
+}
+
+p.persona-desc {
+  font-size: 16px;
+  color: var(--gray-1);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.persona-sub {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-1);
+  margin-bottom: 12px;
+}
+
+.persona-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.persona-list li {
+  font-size: 14px;
+  color: var(--gray-3);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+
+.persona-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gray-2);
+}
+
+/* ---------- Key challenges (grid, mirrors .expertise) ---------- */
+
+.cs-challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--rail-gap);
+}
+
+.challenge-card {
+  padding: 28px;
+}
+
+.challenge-num {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--gray-2);
+  margin-bottom: 18px;
+}
+
+.challenge-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+p.challenge-desc {
+  font-size: 16px;
+  color: var(--gray-1);
+  line-height: 1.55;
+}
+
+/* ---------- Success / outcomes grid ---------- */
+
+.success-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--rail-gap);
+  margin-top: 24px;
+}
+
+.success-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.success-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.success-icon {
+  color: var(--gray-1);
+  flex-shrink: 0;
+}
+
+.success-card-title {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.success-card .success-card-desc {
+  font-size: 16px;
+  color: var(--gray-1);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.success-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 22px;
+}
+
+.success-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.success-metric-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+
+.success-metric-value {
+  display: block;
+  font-size: 14px;
+  color: var(--gray-4);
+  line-height: 1.55;
+}
+
+/* ---------- Tables ---------- */
+
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+.cs-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-table thead th {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  text-align: left;
+  padding: 0 40px 12px 0;
+}
+
+.cs-table tbody tr {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.cs-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.cs-table tbody td {
+  font-size: 14px;
+  color: var(--gray-3);
+  padding: 18px 40px 18px 0;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.cs-table tbody td:first-child {
+  color: var(--white);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ---------- Learning / insight cards ---------- */
+
+.learnings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.learning-card {
+  padding: 28px 32px;
+}
+
+.learning-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+p.learning-desc {
+  font-size: 16px;
+  color: var(--gray-1);
+  line-height: 1.65;
+}
+
+.learning-desc strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* ---------- Showcase / carousels ---------- */
+
+.cs-showcase {
+  margin-top: 56px;
+}
+
+.cs-showcase:first-child {
+  margin-top: 0;
+}
+
+.cs-showcase-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.cs-showcase-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.cs-car-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.cs-car-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.cs-car-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cs-car-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cs-car-frame {
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.cs-slide {
+  display: none;
+}
+
+.cs-slide.is-active {
+  display: block;
+}
+
+.cs-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.cs-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: width 0.3s var(--ease), background 0.3s var(--ease), border-radius 0.3s var(--ease);
+}
+
+.cs-dot.is-active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--white);
+}
+
+/* ---------- Impact grid ---------- */
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--rail-gap);
+}
+
+.impact-card {
+  padding: 36px 32px;
+}
+
+.impact-title {
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+p.impact-desc {
+  font-size: 16px;
+  color: var(--gray-1);
+  line-height: 1.6;
+}
+
+/* ---------- Next project ---------- */
+
+.cs-next-link .cs-next-eyebrow {
+  font-size: 15px;
+  color: var(--gray-1);
+  margin-bottom: 16px;
+}
+
+.cs-next-title {
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--white);
+  margin: 0;
+  transition: color 0.3s var(--ease);
+}
+
+.cs-next-link:hover .cs-next-title {
+  color: var(--gray-1);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 809px) {
+  .personas-grid,
+  .cs-challenges-grid,
+  .success-grid,
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-hero {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cs-hero-copy h1,
+  .cs-hero-sub {
+    max-width: 100%;
+  }
+
+  .cs-next-link .cs-next-eyebrow {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-hero { padding-top: 24px; }
+}
