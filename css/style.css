@@ -699,6 +699,12 @@ body.nav-open {
 
   .creature-wrap { grid-column: auto; justify-self: auto; align-self: flex-start; transform: none; flex: 0 0 auto; }
 
+  .get-in-touch .git-content { align-items: flex-end; }
+
+  .get-in-touch .git-creature { margin-top: 0; }
+
+  .get-in-touch .creature-wrap { align-self: flex-end; }
+
   .nav-toggle { display: flex; }
 
   .site-nav {
