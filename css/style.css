@@ -742,7 +742,6 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
-  .logo-name { display: none; }
   .hero { min-height: 70vh; }
   .split-section { padding: 56px var(--gutter); }
   .split-section.cs-after-photo { margin-top: 56px; }
