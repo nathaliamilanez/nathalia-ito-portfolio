@@ -404,6 +404,14 @@ body.nav-open {
   border-top: 1px solid var(--border);
 }
 
+.split-section.cs-no-divider::after {
+  display: none;
+}
+
+.split-section.cs-no-divider {
+  padding-bottom: 0;
+}
+
 .split-label {
   flex: 0 0 var(--rail);
 }
