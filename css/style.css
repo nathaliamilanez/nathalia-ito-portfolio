@@ -164,7 +164,7 @@ body.nav-open {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
 }
 
 .reveal.is-visible {
