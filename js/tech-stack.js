@@ -169,7 +169,11 @@
       var t = 1 - dist / RADIUS;
       var eased = t * (2 - t); // gentler falloff — movement stays visible across more of the radius
       var lean = MAX_LEAN * eased;
-      var nx = dist > 0.001 ? dx / dist : 0, ny = dist > 0.001 ? dy / dist : 0;
+      // floor the distance used for direction so it doesn't blow up into a
+      // jittery/shaky flip when a drifting tile passes right under the pointer —
+      // a real division near zero would send the lean direction spinning every frame
+      var safeDist = Math.max(dist, 30);
+      var nx = dx / safeDist, ny = dy / safeDist;
       tile.style.setProperty("--hs", (1 + MAX_SCALE * eased).toFixed(3));
       tile.style.setProperty("--hx", (nx * lean).toFixed(2) + "px");
       tile.style.setProperty("--hy", (ny * lean).toFixed(2) + "px");
