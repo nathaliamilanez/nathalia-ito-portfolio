@@ -471,6 +471,161 @@ body.nav-open {
   color: var(--white);
 }
 
+/* ---------- Tech Stack ---------- */
+
+.tech-stack {
+  --accent: #9C97FF;
+  --tile-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 22px -8px rgba(0, 0, 0, .6), 0 28px 46px -22px rgba(0, 0, 0, .55);
+  position: relative;
+  display: flex;
+  gap: var(--rail-gap);
+  background: var(--bg);
+  padding: 110px var(--gutter);
+}
+
+.tech-stack::before {
+  content: "";
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  top: 0;
+  border-top: 1px solid var(--border);
+}
+
+.tech-stack-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tech-stack .stage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16 / 7.4;
+  min-height: 460px;
+  max-height: 680px;
+  overflow: visible;
+}
+
+.tech-stack .tiles {
+  position: absolute;
+  inset: 0;
+}
+
+.tech-stack .tile-anim {
+  position: absolute;
+  left: var(--l);
+  top: var(--t);
+  width: var(--sz);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  animation: tech-stack-drift var(--dur) ease-in-out infinite;
+  animation-delay: var(--delay);
+  will-change: transform;
+  z-index: 1;
+}
+
+.tech-stack .tile-anim:hover,
+.tech-stack .tile-anim:focus-visible {
+  z-index: 50;
+}
+
+.tech-stack .tile {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  box-shadow: var(--tile-shadow);
+  border: 1px solid rgba(255, 255, 255, .09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(var(--hx, 0px), var(--hy, 0px)) rotate(var(--rot)) scale(var(--hs, 1));
+  transition: transform .45s var(--ease);
+  cursor: default;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-stack .tile { transition: none; }
+}
+
+.tech-stack .tile.on-black {
+  border-color: rgba(255, 255, 255, .22);
+}
+
+.tech-stack .tile-anim:focus-visible {
+  outline: none;
+}
+
+.tech-stack .tile-anim:focus-visible .tile {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.tech-stack .tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, 0) 48%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.tech-stack .tile svg {
+  width: 56%;
+  height: 56%;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-stack .tile-label {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translate(-50%, -100%);
+  background: rgba(10, 10, 14, .92);
+  color: var(--white);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 5px 9px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 10;
+}
+
+.tech-stack .tile-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(10, 10, 14, .92);
+}
+
+.tech-stack .tile-anim:hover .tile-label,
+.tech-stack .tile-anim:focus-visible .tile-label {
+  opacity: 1;
+  transform: translate(-50%, -100%) translateY(-4px);
+}
+
+@keyframes tech-stack-drift {
+  0%   { transform: translate(-50%, -50%) rotate(var(--rot)); }
+  25%  { transform: translate(calc(-50% + var(--amp) * 0.5), calc(-50% - var(--amp))) rotate(calc(var(--rot) + var(--wob))); }
+  50%  { transform: translate(calc(-50% - var(--amp) * 0.35), calc(-50% - var(--amp) * 0.6)) rotate(var(--rot)); }
+  75%  { transform: translate(calc(-50% - var(--amp) * 0.6), calc(-50% + var(--amp) * 0.55)) rotate(calc(var(--rot) - var(--wob))); }
+  100% { transform: translate(-50%, -50%) rotate(var(--rot)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-stack .tile-anim { animation: none; }
+}
+
 /* ---------- Footer / Get in touch ---------- */
 
 .get-in-touch {
@@ -678,6 +833,12 @@ body.nav-open {
   .expertise-col:nth-child(2) {
     border-top: none;
     padding-top: 0;
+  }
+
+  .tech-stack {
+    flex-direction: column;
+    gap: 24px;
+    padding: 70px var(--gutter);
   }
 
   .get-in-touch {
