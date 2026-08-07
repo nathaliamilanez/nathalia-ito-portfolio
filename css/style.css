@@ -21,10 +21,12 @@ html {
   background: var(--bg);
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--white);
   font-family: "General Sans", "Helvetica Neue", Arial, sans-serif;
