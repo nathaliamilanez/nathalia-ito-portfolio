@@ -19,14 +19,52 @@
 
   var header = document.getElementById("siteHeader");
   var onScroll = function () {
-    if (window.scrollY > 8) {
-      header.style.borderBottomColor = "rgba(255, 255, 255, 0.16)";
-    } else {
-      header.style.borderBottomColor = "rgba(255, 255, 255, 0.08)";
-    }
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  var themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    var applyTheme = function (theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      try { sessionStorage.setItem("theme", theme); } catch (e) {}
+    };
+    themeToggle.addEventListener("click", function (e) {
+      var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!document.startViewTransition || reduceMotion) {
+        applyTheme(next);
+        return;
+      }
+
+      var rect = e.currentTarget.getBoundingClientRect();
+      var x = rect.left + rect.width / 2;
+      var y = rect.top + rect.height / 2;
+      var xPct = (x / window.innerWidth) * 100;
+      var yPct = (y / window.innerHeight) * 100;
+      var endRadius =
+        (Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) /
+          (Math.hypot(window.innerWidth, window.innerHeight) / Math.SQRT2)) *
+        100;
+
+      var transition = document.startViewTransition(function () { applyTheme(next); });
+      transition.ready
+        .then(function () {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                "circle(0% at " + xPct + "% " + yPct + "%)",
+                "circle(" + endRadius + "% at " + xPct + "% " + yPct + "%)"
+              ]
+            },
+            { duration: 600, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" }
+          );
+        })
+        .catch(function () {});
+      transition.finished.catch(function () {});
+    });
+  }
 
   var creature = document.getElementById("creature");
   var pupilL = document.getElementById("pupilL");
