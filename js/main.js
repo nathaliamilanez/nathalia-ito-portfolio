@@ -160,4 +160,37 @@
   };
   if (creature) creature.addEventListener("click", scrollToTop);
   if (backToTop) backToTop.addEventListener("click", scrollToTop);
+
+  var emailLink = document.getElementById("emailLink");
+  if (emailLink) {
+    var copyTooltip = document.getElementById("copyTooltip");
+    var hideTooltipTimer;
+    emailLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      var email = emailLink.getAttribute("data-email");
+      var showTooltip = function () {
+        copyTooltip.classList.add("is-visible");
+        clearTimeout(hideTooltipTimer);
+        hideTooltipTimer = setTimeout(function () {
+          copyTooltip.classList.remove("is-visible");
+        }, 1400);
+      };
+      var fallbackCopy = function () {
+        var temp = document.createElement("textarea");
+        temp.value = email;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand("copy"); } catch (err) {}
+        document.body.removeChild(temp);
+        showTooltip();
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showTooltip, fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    });
+  }
 })();
