@@ -132,15 +132,35 @@
   var navToggle = document.getElementById("navToggle");
   var siteNav = document.getElementById("siteNav");
   if (navToggle && siteNav) {
+    var lockedScrollY = 0;
+    var lockScroll = function () {
+      lockedScrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = -lockedScrollY + "px";
+      document.body.style.width = "100%";
+    };
+    var unlockScroll = function () {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, lockedScrollY);
+    };
     var closeNav = function () {
+      if (!siteNav.classList.contains("is-open")) return;
       siteNav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
       document.body.classList.remove("nav-open");
+      unlockScroll();
     };
     var toggleNav = function () {
       var isOpen = siteNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       document.body.classList.toggle("nav-open", isOpen);
+      if (isOpen) {
+        lockScroll();
+      } else {
+        unlockScroll();
+      }
     };
     navToggle.addEventListener("click", toggleNav);
     siteNav.querySelectorAll(".nav-link").forEach(function (link) {

@@ -1063,6 +1063,8 @@ body.nav-open {
 
   .hero-meta { flex: none; }
 
+  .hero-break { display: none; }
+
   .project {
     flex-direction: column-reverse;
     align-items: stretch;
@@ -1149,6 +1151,8 @@ body.nav-open {
   .get-in-touch .creature-wrap { align-self: flex-end; }
 
   .nav-toggle { display: flex; }
+
+  .site-header-actions { gap: 8px; }
 
   .site-nav {
     position: fixed;
