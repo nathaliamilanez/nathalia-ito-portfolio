@@ -1,14 +1,4 @@
 (function () {
-  var overlay = document.getElementById("pageOverlay");
-  if (overlay) {
-    overlay.addEventListener("transitionend", function () {
-      overlay.style.display = "none";
-    });
-    setTimeout(function () {
-      overlay.classList.add("is-hidden");
-    }, 800);
-  }
-
   function setupCarousel(root) {
     if (!root) return;
     var slides = root.querySelectorAll(".cs-slide");

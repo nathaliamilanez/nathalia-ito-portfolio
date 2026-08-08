@@ -1,4 +1,48 @@
 (function () {
+  var overlay = document.getElementById("pageOverlay");
+  if (overlay) {
+    var reduceMotionOverlay = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    overlay.addEventListener("transitionend", function () {
+      overlay.style.display = "none";
+    });
+
+    var nameEl = overlay.querySelector(".page-overlay-name");
+    var useFlicker = overlay.getAttribute("data-flicker") === "true";
+
+    if (nameEl && useFlicker && !reduceMotionOverlay) {
+      var fontVariants = [
+        "Georgia, serif",
+        "'Courier New', monospace",
+        "'Times New Roman', serif",
+        "Arial, sans-serif",
+        "Georgia, serif",
+        "'Courier New', monospace"
+      ];
+      var stepDelays = [75, 95, 120, 150, 190, 240];
+      var originalFontFamily = nameEl.style.fontFamily;
+      var step = 0;
+
+      var runFlicker = function () {
+        if (step >= fontVariants.length) {
+          nameEl.style.fontFamily = originalFontFamily;
+          setTimeout(function () {
+            overlay.classList.add("is-hidden");
+          }, 500);
+          return;
+        }
+        nameEl.style.fontFamily = fontVariants[step];
+        setTimeout(runFlicker, stepDelays[step]);
+        step++;
+      };
+
+      runFlicker();
+    } else {
+      setTimeout(function () {
+        overlay.classList.add("is-hidden");
+      }, reduceMotionOverlay ? 300 : 800);
+    }
+  }
+
   var revealEls = document.querySelectorAll(".reveal");
 
   var observer = new IntersectionObserver(

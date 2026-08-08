@@ -113,6 +113,58 @@ a {
 ul, ol { margin: 0; padding: 0; list-style: none; }
 p { margin: 0; }
 
+/* ---------- Page intro overlay ---------- */
+
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.8s var(--ease);
+}
+
+.page-overlay-brand {
+  display: flex;
+  align-items: center;
+}
+
+.page-overlay-brand .logo-mark {
+  height: 44px;
+  width: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+[data-theme="light"] .page-overlay-brand .logo-mark {
+  mix-blend-mode: normal;
+}
+
+.page-overlay-name {
+  display: inline-block;
+  font-size: 24px;
+  color: var(--white);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  margin-left: 18px;
+}
+
+.page-overlay.is-hidden {
+  transform: translate3d(0, -100%, 0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-overlay {
+    transition: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
 /* ---------- Header ---------- */
 
 .site-header {
