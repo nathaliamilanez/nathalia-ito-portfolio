@@ -147,6 +147,14 @@ p { margin: 0; }
   .skip-link { transition: none; }
 }
 
+/* main is tabindex="-1" so the skip link (and any "#top" link, like the
+   logo) can move focus there — browsers draw a default outline around
+   whatever receives focus, which for <main> means the whole page. Being
+   scrolled to the top already shows where you landed, so no ring needed. */
+main:focus {
+  outline: none;
+}
+
 /* ---------- Page intro overlay ---------- */
 
 .page-overlay {
