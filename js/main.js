@@ -143,7 +143,14 @@
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
+      // html has scroll-behavior: smooth, which the no-options scrollTo()
+      // overload inherits — without this it glides back into place instead
+      // of landing instantly, reading as an unwanted scroll on long pages.
+      var root = document.documentElement;
+      var prevBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
       window.scrollTo(0, lockedScrollY);
+      root.style.scrollBehavior = prevBehavior;
     };
     var closeNav = function () {
       if (!siteNav.classList.contains("is-open")) return;
