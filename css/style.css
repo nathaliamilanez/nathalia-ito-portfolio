@@ -1167,7 +1167,7 @@ body.nav-open .tech-stack .tile-anim {
     z-index: 99;
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
+    gap: 0;
     padding: 24px var(--gutter) 32px;
     background: var(--nav-mobile-bg);
     backdrop-filter: blur(10px);
@@ -1189,12 +1189,17 @@ body.nav-open .tech-stack .tile-anim {
   }
 
   .nav-link {
-    height: 52px;
+    height: 60px;
     padding: 0 4px;
     font-size: 20px;
     color: var(--white);
     border-radius: 0;
+    border-top: 1px solid var(--border-soft);
     border-bottom: 1px solid var(--border-soft);
+  }
+
+  .nav-link:first-child {
+    border-top: none;
   }
 }
 
