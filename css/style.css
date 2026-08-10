@@ -137,6 +137,10 @@ p { margin: 0; }
 
 .skip-link:focus {
   top: 16px;
+  /* the chip sliding fully into view is already an unmistakable focus
+     signal — this drops the browser's default blue ring so it doesn't
+     show up as a stray blue line against the header behind it */
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -860,6 +864,7 @@ body.nav-open .tech-stack .tile-anim {
 /* ---------- Footer / Get in touch ---------- */
 
 .get-in-touch {
+  --accent: #9C97FF;
   position: relative;
   width: 100%;
   background: var(--bg);
@@ -1010,6 +1015,14 @@ body.nav-open .tech-stack .tile-anim {
 .git-link-item:hover {
   color: var(--heading);
   border-color: var(--heading);
+}
+
+/* explicit outline replaces the browser's default focus ring, which was
+   drawing a broken two-box shape around the hidden .copy-tooltip fragment
+   inside the email link */
+.git-link-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .git-link-icon {
