@@ -329,8 +329,8 @@ p { margin: 0; }
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-body.nav-open {
-  overflow: hidden;
+body.nav-open .tech-stack .tile-anim {
+  animation-play-state: paused;
 }
 
 /* ---------- Reveal on scroll ---------- */
@@ -1115,6 +1115,10 @@ body.nav-open {
     flex-direction: column;
     gap: 24px;
     padding: 70px var(--gutter);
+  }
+
+  .tech-stack .stage {
+    overflow: hidden;
   }
 
   .get-in-touch {

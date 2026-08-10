@@ -163,6 +163,18 @@
       }
     };
     navToggle.addEventListener("click", toggleNav);
+    // Blocks touch-driven scroll from leaking to the page behind the fixed
+    // nav panel on iOS, where inertial scrolling can keep moving the body
+    // for a few frames after it switches to position:fixed.
+    document.addEventListener(
+      "touchmove",
+      function (e) {
+        if (siteNav.classList.contains("is-open") && !siteNav.contains(e.target)) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
     siteNav.querySelectorAll(".nav-link").forEach(function (link) {
       link.addEventListener("click", closeNav);
     });
