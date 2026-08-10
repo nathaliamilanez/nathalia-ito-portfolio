@@ -132,6 +132,19 @@
   var navToggle = document.getElementById("navToggle");
   var siteNav = document.getElementById("siteNav");
   if (navToggle && siteNav) {
+    // Everything the fixed mobile nav panel visually covers — kept out of the
+    // tab order while open so keyboard/screen-reader users can't tab past the
+    // visible menu links into content hidden behind the panel.
+    var inertTargets = document.querySelectorAll("body > main, body > footer");
+    var setBackgroundInert = function (isInert) {
+      inertTargets.forEach(function (el) {
+        if (isInert) {
+          el.setAttribute("inert", "");
+        } else {
+          el.removeAttribute("inert");
+        }
+      });
+    };
     var lockedScrollY = 0;
     var lockScroll = function () {
       lockedScrollY = window.scrollY;
@@ -152,17 +165,22 @@
       window.scrollTo(0, lockedScrollY);
       root.style.scrollBehavior = prevBehavior;
     };
-    var closeNav = function () {
+    var closeNav = function (returnFocus) {
       if (!siteNav.classList.contains("is-open")) return;
       siteNav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
       document.body.classList.remove("nav-open");
+      setBackgroundInert(false);
       unlockScroll();
+      if (returnFocus) navToggle.focus();
     };
     var toggleNav = function () {
       var isOpen = siteNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
       document.body.classList.toggle("nav-open", isOpen);
+      setBackgroundInert(isOpen);
       if (isOpen) {
         lockScroll();
       } else {
@@ -183,10 +201,10 @@
       { passive: false }
     );
     siteNav.querySelectorAll(".nav-link").forEach(function (link) {
-      link.addEventListener("click", closeNav);
+      link.addEventListener("click", function () { closeNav(); });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeNav();
+      if (e.key === "Escape") closeNav(true);
     });
     window.addEventListener("resize", function () {
       if (window.innerWidth > 809) closeNav();

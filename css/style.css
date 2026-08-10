@@ -113,6 +113,36 @@ a {
 ul, ol { margin: 0; padding: 0; list-style: none; }
 p { margin: 0; }
 
+/* ---------- Skip link ---------- */
+/* Off-screen until focused, so it never affects normal layout/appearance —
+   only a keyboard user tabbing from the very top of the page sees it.
+   Colors invert with the theme (white chip in dark mode, near-black chip
+   in light mode) so it always reads clearly against the page background. */
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  z-index: 10000;
+  background: var(--white);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}
+
 /* ---------- Page intro overlay ---------- */
 
 .page-overlay {
@@ -441,6 +471,9 @@ body.nav-open .tech-stack .tile-anim {
   font-size: 22px;
   font-weight: 500;
   color: var(--heading);
+  /* was a <p> (globally reset to margin: 0) — h2 carries its own default
+     margin, so it's zeroed here to keep spacing controlled by the flex gap. */
+  margin: 0;
 }
 
 .project-tagline {
@@ -600,16 +633,17 @@ body.nav-open .tech-stack .tile-anim {
   flex: 0 0 var(--rail);
 }
 
-.split-label span {
+.split-label h2 {
   position: sticky;
   top: 120px;
   display: inline-block;
   font-size: 15px;
   font-weight: 500;
+  margin: 0;
   color: var(--gray-1);
 }
 
-[data-theme="light"] .split-label span {
+[data-theme="light"] .split-label h2 {
   color: var(--heading);
 }
 
@@ -641,6 +675,9 @@ body.nav-open .tech-stack .tile-anim {
   font-size: 15px;
   font-weight: 500;
   color: var(--gray-1);
+  /* was a <p> (globally reset to margin: 0) — h2/h3 carry their own
+     default top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 18px;
 }
 
@@ -905,9 +942,15 @@ body.nav-open .tech-stack .tile-anim {
   background: none;
   font-family: inherit;
   font-size: 13px;
-  color: var(--gray-2);
+  /* gray-2 only hits 2.98:1 on the dark bg (fails WCAG AA); gray-1 clears
+     AAA. Light theme already passed with gray-2, so it's kept as-is. */
+  color: var(--gray-1);
   cursor: pointer;
   transition: color 0.3s var(--ease);
+}
+
+[data-theme="light"] .back-to-top {
+  color: var(--gray-2);
 }
 
 .back-to-top:hover {
@@ -1090,7 +1133,7 @@ body.nav-open .tech-stack .tile-anim {
     flex: none;
   }
 
-  .split-label span {
+  .split-label h2 {
     position: static;
   }
 

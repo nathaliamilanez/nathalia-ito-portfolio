@@ -197,6 +197,9 @@
   font-size: 17px;
   font-weight: 500;
   color: var(--white);
+  /* was a <p> (globally reset to margin: 0) — h3 carries its own default
+     top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 4px;
 }
 
@@ -270,6 +273,9 @@ p.persona-desc {
   font-size: 17px;
   font-weight: 500;
   color: var(--white);
+  /* was a <p> (globally reset to margin: 0) — h3 carries its own default
+     top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 10px;
   line-height: 1.3;
 }
@@ -312,6 +318,9 @@ p.challenge-desc {
   font-weight: 500;
   color: var(--white);
   line-height: 1.25;
+  /* was a <p> (globally reset to margin: 0) — h3 carries its own default
+     top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 12px;
 }
 
@@ -408,6 +417,9 @@ p.challenge-desc {
   font-size: 17px;
   font-weight: 500;
   color: var(--white);
+  /* was a <p> (globally reset to margin: 0) — h3 carries its own default
+     top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 10px;
   line-height: 1.35;
 }
@@ -538,6 +550,9 @@ p.learning-desc {
   font-weight: 500;
   color: var(--white);
   line-height: 1.25;
+  /* was a <p> (globally reset to margin: 0) — h3 carries its own default
+     top margin, so it's zeroed here to match. */
+  margin-top: 0;
   margin-bottom: 14px;
 }
 

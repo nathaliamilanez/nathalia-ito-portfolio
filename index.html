@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<a href="#top" class="skip-link">Skip to main content</a>
+
 <div class="page-overlay" id="pageOverlay" data-flicker="true">
   <div class="page-overlay-brand">
     <img src="assets/logo.webp" alt="" class="logo-mark" width="240" height="240" decoding="async">
@@ -23,7 +25,7 @@
 
 <header class="site-header" id="siteHeader">
   <a href="#top" class="logo-link" aria-label="Nathalia Milanez — home">
-    <img src="assets/logo.webp" alt="Logo" class="logo-mark" width="240" height="240" decoding="async">
+    <img src="assets/logo.webp" alt="" class="logo-mark" width="240" height="240" decoding="async">
     <span class="logo-name">Nathalia Milanez</span>
   </a>
   <div class="site-header-right">
@@ -35,7 +37,7 @@
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
     <div class="site-header-actions">
-      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Alternar entre tema claro e escuro">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
         <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4A7 7 0 0 0 20 14.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
         </svg>
@@ -51,7 +53,7 @@
           <path d="M18 6L19.8 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
       </button>
-      <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteNav">
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -60,7 +62,7 @@
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero reveal" id="hero">
@@ -81,7 +83,7 @@
     <a class="project reveal" href="work/bjjlink.html">
       <div class="project-text">
         <div class="project-copy">
-          <p class="project-title">BJJLINK</p>
+          <h2 class="project-title">BJJLINK</h2>
           <p class="project-tagline">Making every workflow a winning move.</p>
           <p class="project-desc">Redesigning a complex SaaS platform for martial arts academies, simplifying everyday operations through a more intuitive product experience.</p>
         </div>
@@ -99,7 +101,7 @@
     <a class="project reveal" href="work/snap-kitchen.html">
       <div class="project-text">
         <div class="project-copy">
-          <p class="project-title">Snap Kitchen</p>
+          <h2 class="project-title">Snap Kitchen</h2>
           <p class="project-tagline">The perfect recipe for better experiences.</p>
           <p class="project-desc">Reimagining the entire meal service ecosystem, from customer ordering to back-office operations, creating a more connected experience across every touchpoint.</p>
         </div>
@@ -117,7 +119,7 @@
     <a class="project reveal" href="work/o-boticario.html">
       <div class="project-text">
         <div class="project-copy">
-          <p class="project-title">O Boticário</p>
+          <h2 class="project-title">O Boticário</h2>
           <p class="project-tagline">Skincare, but for digital experiences.</p>
           <p class="project-desc">Designing intuitive campaign experiences for one of Latin America's leading beauty brands, improving usability, strengthening engagement and driving conversion.</p>
         </div>
@@ -135,8 +137,8 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="split-section reveal" id="about">
-    <div class="split-label"><span>About</span></div>
+  <section class="split-section reveal" id="about" aria-labelledby="about-heading">
+    <div class="split-label"><h2 id="about-heading">About</h2></div>
     <div class="split-content">
       <p>I'm Nathalia, a Product Designer partnering with product teams across complex digital domains.</p>
       <p>I design digital products where business goals, technology, and human behaviour intersect. I work across the entire product lifecycle, helping teams take products from 0 → 1, enhance existing experiences, and support innovation and continuous product growth.</p>
@@ -146,13 +148,13 @@
   </section>
 
   <!-- EXPERTISE -->
-  <section class="expertise reveal" id="focus">
+  <section class="expertise reveal" id="focus" aria-labelledby="expertise-heading">
     <div class="expertise-col">
-      <p class="expertise-heading expertise-title">Expertise</p>
+      <h2 class="expertise-heading expertise-title" id="expertise-heading">Expertise</h2>
     </div>
     <div class="expertise-col">
-      <p class="expertise-heading">Research</p>
-      <ul>
+      <h3 class="expertise-heading">Research</h3>
+      <ul role="list">
         <li>UX Research</li>
         <li>User Interviews</li>
         <li>Usability Testing</li>
@@ -162,8 +164,8 @@
       </ul>
     </div>
     <div class="expertise-col">
-      <p class="expertise-heading">Design</p>
-      <ul>
+      <h3 class="expertise-heading">Design</h3>
+      <ul role="list">
         <li>Product Strategy</li>
         <li>Interaction Design</li>
         <li>Information Architecture</li>
@@ -173,8 +175,8 @@
       </ul>
     </div>
     <div class="expertise-col">
-      <p class="expertise-heading">Delivery</p>
-      <ul>
+      <h3 class="expertise-heading">Delivery</h3>
+      <ul role="list">
         <li>Cross-functional Collaboration</li>
         <li>Stakeholder Alignment</li>
         <li>Developer Handoff</li>
@@ -186,9 +188,9 @@
   </section>
 
   <!-- TECH STACK -->
-  <section class="tech-stack reveal" id="tech-stack">
+  <section class="tech-stack reveal" id="tech-stack" aria-labelledby="tech-stack-heading">
     <div class="split-label">
-      <span>Tech Stack</span>
+      <h2 id="tech-stack-heading">Tech Stack</h2>
     </div>
     <div class="tech-stack-content">
       <div class="stage">
